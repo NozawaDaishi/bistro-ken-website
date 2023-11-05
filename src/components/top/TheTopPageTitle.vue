@@ -2,7 +2,7 @@
 
 <template>
   <div :class="classes.title">
-    <h1>大衆Bistro Ken</h1>
+    <h1>大衆ビストロ Ken</h1>
   </div>
 </template>
 

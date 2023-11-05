@@ -5,12 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --fix",
+    "format": "prettier --write src"
   },
   "dependencies": {
     "pinia": "^2.1.7",
     "vue": "^3.3.4",
+    "vue-i18n": "^9.6.5",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
