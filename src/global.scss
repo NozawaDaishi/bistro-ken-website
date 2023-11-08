@@ -1,0 +1,39 @@
+@import './styles/reset';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500;700;900&display=swap');
+
+:root {
+  --primary-color: #133c6c;
+  --secondary-color: #6c6c6c;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 500;
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
+  .left-enter-active,
+  .left-leave-active {
+    transform: translate(0px, 0px);
+    transition: transform 0.5s ease;
+  }
+
+  .left-enter-from,
+  .left-leave-to {
+    transform: translateX(-100vw) translateX(0px);
+    transition: transform 1.5s ease;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    display: none;
+  }
+}
