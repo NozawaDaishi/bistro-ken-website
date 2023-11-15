@@ -18,6 +18,16 @@ const useHeaderStore = defineStore('useHeader', {
     setScrolled(value: boolean) {
       this.isScrolled = value
     },
+    /**
+     * トップにスクロールする関数
+     *
+     */
+    scrollToTop() {
+      this.routerViewWrapperRef?.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+    },
   },
 })
 

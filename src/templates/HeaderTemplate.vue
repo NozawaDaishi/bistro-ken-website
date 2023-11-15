@@ -6,6 +6,7 @@ import useRouterFunctions from '@/composables/useRouterFunctions'
 const { routerPush } = useRouterFunctions()
 const headerStore = useHeaderStore()
 const { isScrolled } = storeToRefs(headerStore)
+const { scrollToTop } = headerStore
 </script>
 
 <template>
@@ -34,7 +35,7 @@ const { isScrolled } = storeToRefs(headerStore)
         <img src="@/assets/icons/header/logo.svg" alt="logo" />
       </div>
     </button>
-    <button :class="classes.scrollTopBtn">
+    <button :class="classes.scrollTopBtn" @click.stop.prevent="scrollToTop()">
       <div :class="classes.icon">
         <img
           src="@/assets/icons/header/arrow-up-long-solid.svg"
