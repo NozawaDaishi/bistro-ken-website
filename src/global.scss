@@ -2,8 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500;700;900&display=swap');
 
 :root {
-  --primary-color: #133c6c;
+  --primary-color: #182d7d;
   --secondary-color: #6c6c6c;
+  --primary-color-transparent: rgba(24, 45, 125, 0.9);
+  --black-transparent: rgba(0, 0, 0, 0.5);
 }
 
 body {

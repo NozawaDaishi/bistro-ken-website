@@ -1,0 +1,267 @@
+// ブレイクポイントの設定
+$breakpoint: (
+  sp: 'screen and (max-width: 767px)',
+  tab: 'screen and (min-width: 768px)',
+  pc: 'screen and (min-width: 1025px)',
+);
+
+@mixin mq($bp) {
+  @media #{map-get($breakpoint, $bp)} {
+    @content;
+  }
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin font12 {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+@mixin font13 {
+  font-size: 13px;
+  line-height: 19px;
+}
+
+@mixin font14 {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@mixin font16 {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin font18 {
+  font-size: 18px;
+  line-height: 26px;
+}
+
+@mixin font20 {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+@mixin font24 {
+  font-size: 24px;
+  line-height: 40px;
+}
+
+@mixin font12Bold {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: bold;
+}
+
+@mixin font13Bold {
+  font-size: 13px;
+  line-height: 19px;
+  font-weight: bold;
+}
+
+@mixin font14Bold {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: bold;
+}
+
+@mixin font16Bold {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: bold;
+}
+
+@mixin font18Bold {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: bold;
+}
+
+@mixin font20Bold {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: bold;
+}
+
+@mixin font24Bold {
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: bold;
+}
+
+@mixin radio {
+  /* デザイン初期化 */
+  .radio {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .radio {
+    cursor: pointer;
+    padding-left: 16px;
+    /*label手前にinput要素用の余白を開ける*/
+    margin-right: 18px;
+    /*input要素との余白を開ける*/
+    margin-bottom: 2px;
+    position: relative;
+    height: 24px;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+    }
+  }
+
+  /* ラジオボタンがチェックされていないときのデザイン */
+  .radio::before {
+    background-color: #fff;
+    border-radius: 50%;
+    border: 2px solid var(--secondary-gray-color);
+    width: 24px;
+    /*チェックボックスの横幅*/
+    height: 24px;
+    left: 0;
+  }
+
+  /* ラジオボタンがチェックされているときのデザイン */
+  .radio::after {
+    height: 10px;
+    /*ラジオボタンの高さ*/
+    width: 10px;
+    /*ラジオボタンの横幅*/
+    border-radius: 50%;
+    background: #fff;
+    top: 7px;
+    /*ラジオボタンの表示位置*/
+    left: 7px;
+    /*ラジオボタンの表示位置*/
+  }
+
+  .radio:checked::before {
+    background-color: var(--blue-primary-color);
+    /*チェック後表示*/
+    border: none;
+  }
+}
+
+@mixin checkbox {
+  /* デザイン初期化 */
+  .checkbox {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .checkbox {
+    cursor: pointer;
+    padding-left: 20px;
+    /*label手前にinput要素用の余白を開ける*/
+    margin-right: 10px;
+    /*input要素との余白を開ける*/
+    margin-bottom: 3px;
+    position: relative;
+    height: 24px;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+    }
+  }
+
+  /* チェックボックスがチェックされていないときのデザイン */
+  .checkbox::before {
+    background-color: #fff;
+    border-radius: 3px;
+    border: 1px solid var(--blue-primary-color);
+    width: 24px;
+    /*チェックボックスの横幅*/
+    height: 24px;
+    left: 0;
+  }
+
+  /* チェックボックスがチェックされているときのデザイン */
+  .checkbox::after {
+    border-bottom: 3px solid var(--common-checked-color);
+    /*チェックマークの太さ*/
+    border-left: 3px solid var(--common-checked-color);
+    /*チェックマークの太さ*/
+    opacity: 0;
+    /*チェック前は非表示*/
+    height: 6px;
+    /*チェックマークの高さ*/
+    width: 11px;
+    /*チェックマークの横幅*/
+    transform: rotate(-45deg);
+    // top: -4px;
+    top: 8px;
+    /*チェックマークの表示位置*/
+    left: 6px;
+    /*チェックマークの表示位置*/
+  }
+
+  .checkbox:checked::after {
+    opacity: 1;
+    /*チェック後表示*/
+  }
+
+  .checkbox:checked::before {
+    background-color: var(--blue-primary-color);
+    /*チェック後表示*/
+  }
+}
+
+@mixin screen_reader {
+  .screen_reader {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+}
+
+@mixin hide_scrollbar {
+  /*Google Chrome、Safariへの対応*/
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /*IE(Internet Explorer)・Microsoft Edgeへの対応*/
+  -ms-overflow-style: none;
+  /*Firefoxへの対応*/
+  scrollbar-width: none;
+}
+
+@mixin all_container_mixin {
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+@mixin scroll_content_mixin {
+  flex-shrink: 1;
+  height: 100%;
+}
