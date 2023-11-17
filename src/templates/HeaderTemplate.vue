@@ -165,6 +165,7 @@ header {
         @include font12;
         color: white;
         margin-top: 5px;
+        font-weight: lighter;
       }
     }
   }

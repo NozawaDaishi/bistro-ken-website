@@ -1,6 +1,7 @@
 <script setup lang="ts" name="AppIndex">
 import 'vue-loading-overlay/dist/css/index.css'
 import Header from '@/templates/HeaderTemplate.vue'
+import Footer from '@/templates/FooterTemplate.vue'
 import { onMounted, onUnmounted } from 'vue'
 import useHeaderStore from '@/stores/useHeaderStore'
 import { storeToRefs } from 'pinia'
@@ -36,6 +37,7 @@ onUnmounted(() => {
     <Header />
     <div ref="routerViewWrapperRef" :class="classes.routerView_wrapper">
       <router-view />
+      <Footer />
     </div>
   </div>
 </template>

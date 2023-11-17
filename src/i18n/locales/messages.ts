@@ -1,6 +1,9 @@
 const messages = {
   ja: {
-    commons: {},
+    commons: {
+      produced_by: 'produced by',
+      producer: 'Kenta Nozawa',
+    },
     error: {},
     nav: {
       contact: 'お問い合わせ',
@@ -9,7 +12,10 @@ const messages = {
     },
   },
   en: {
-    commons: {},
+    commons: {
+      produced_by: 'produced by',
+      producer: 'Kenta Nozawa',
+    },
     error: {},
     nav: {
       contact: 'Contact',
