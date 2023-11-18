@@ -15,7 +15,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: "18.14.1"
+          node-version: '18.14.1'
       - name: Install dependencies
         run: npm install
       # テストを追加する場合、以下のようなステップを加えます
@@ -23,3 +23,6 @@ jobs:
       #   run: npm test
       - name: Build
         run: npm run build
+      # Linter ステップの追加
+      - name: Lint
+        run: npm run lint
