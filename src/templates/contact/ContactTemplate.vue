@@ -1,5 +1,7 @@
 <script setup lang="ts" name="ContactTemplate"></script>
 
-<template></template>
+<template>
+  <div></div>
+</template>
 
 <style lang="scss" module="classes"></style>

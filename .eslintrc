@@ -1,6 +1,13 @@
 {
-  "extends": ["eslint:recommended", "plugin:vue/vue3-recommended", "plugin:prettier/recommended"],
-  "rules": {
-    "prettier/prettier": ["error", { "semi": false, "singleQuote": true }]
-  }
+  "parser": "vue-eslint-parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/vue3-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser"
+  },
+  "plugins": ["vue", "@typescript-eslint"]
 }
