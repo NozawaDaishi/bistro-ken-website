@@ -70,7 +70,7 @@ const { setHoveredMenu, scrollToTop } = headerStore
           <div :class="classes.icon">
             <img
               src="@/assets/icons/header/location_dot_solid_dark.svg"
-              alt="instagram_icon"
+              alt="address"
             />
           </div>
           <div :class="classes.text">
@@ -168,8 +168,8 @@ header {
       opacity: 0;
       visibility: hidden;
       transition:
-        opacity 0.3s ease-in-out,
-        visibility 0s linear 1s;
+        opacity 0.1s ease-in-out,
+        visibility 0.1s ease-in-out;
     }
     .list {
       display: flex;
@@ -265,7 +265,7 @@ header {
         padding: 5px 40px;
         .icon {
           display: flex;
-          width: 20px;
+          width: 25px;
         }
         .text {
           margin-left: 10px;
