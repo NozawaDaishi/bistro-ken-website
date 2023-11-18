@@ -7,11 +7,14 @@ const messages = {
     },
     error: {},
     nav: {
-      contact: 'お問い合わせ',
       access: 'Access',
-      address: '新潟県新潟市西区小針2丁目42-10 佐山第二ビル',
+      contact: 'Contact',
       instagram: 'Instagram',
+      menu: 'Menu',
+      address: '新潟県新潟市西区小針2丁目42-10 佐山第二ビル',
+      contact_form: 'お問い合わせ',
       latest_information: '最新情報はこちら',
+      menu_list: 'メニュー',
     },
   },
   en: {
@@ -22,12 +25,15 @@ const messages = {
     },
     error: {},
     nav: {
-      contact: 'Contact',
       access: 'Access',
+      contact: 'Contact',
+      instagram: 'Instagram',
+      menu: 'Menu',
       address:
         'Sayama Daini Building, 2-42-10 Kobari, Nishi Ward, Niigata City, Niigata Prefecture',
-      instagram: 'Instagram',
+      contact_form: 'Contact Form',
       latest_information: 'Click here for the latest information',
+      menu_list: 'Menu',
     },
   },
 }

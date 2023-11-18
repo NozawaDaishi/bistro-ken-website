@@ -27,6 +27,17 @@ const { setHoveredMenu, scrollToTop } = headerStore
       <button :class="classes.list">
         <div :class="classes.icon">
           <img
+            src="@/assets/icons/header/clipboard_regular_light.svg"
+            alt="address_icon"
+          />
+        </div>
+        <div :class="classes.text">
+          {{ $t('nav.menu_list') }}
+        </div>
+      </button>
+      <button :class="classes.list">
+        <div :class="classes.icon">
+          <img
             src="@/assets/icons/header/location_dot_solid_light.svg"
             alt="address_icon"
           />
@@ -35,7 +46,17 @@ const { setHoveredMenu, scrollToTop } = headerStore
           {{ $t('nav.address') }}
         </div>
       </button>
-      <!-- TODO: リンクの追加 -->
+      <button :class="classes.list">
+        <div :class="classes.icon">
+          <img
+            src="@/assets/icons/header/paper_plane_regular_light.svg"
+            alt="contact_icon"
+          />
+        </div>
+        <div :class="classes.text">
+          {{ $t('nav.contact_form') }}
+        </div>
+      </button>
       <button :class="classes.list">
         <div :class="classes.icon">
           <img
@@ -69,12 +90,34 @@ const { setHoveredMenu, scrollToTop } = headerStore
         <button :class="classes.btn">
           <div :class="classes.icon">
             <img
+              src="@/assets/icons/header/clipboard_regular_dark.svg"
+              alt="menu_icon"
+            />
+          </div>
+          <div :class="classes.text">
+            {{ $t('nav.menu') }}
+          </div>
+        </button>
+        <button :class="classes.btn">
+          <div :class="classes.icon">
+            <img
               src="@/assets/icons/header/location_dot_solid_dark.svg"
-              alt="address"
+              alt="address_icon"
             />
           </div>
           <div :class="classes.text">
             {{ $t('nav.access') }}
+          </div>
+        </button>
+        <button :class="classes.btn">
+          <div :class="classes.icon">
+            <img
+              src="@/assets/icons/header/paper_plane_regular_dark.svg"
+              alt="contact_icon"
+            />
+          </div>
+          <div :class="classes.text">
+            {{ $t('nav.contact') }}
           </div>
         </button>
         <button :class="classes.btn">
@@ -161,23 +204,23 @@ header {
     opacity: 1;
     visibility: visible;
     transition:
-      opacity 0s linear 0.4s,
+      opacity 0s linear 0.5s,
       visibility 0.3s ease-in-out;
 
     &.isScrolled {
       opacity: 0;
       visibility: hidden;
       transition:
-        opacity 0.1s ease-in-out,
-        visibility 0.1s ease-in-out;
+        opacity 0s ease-in-out,
+        visibility 0s ease-in-out;
     }
     .list {
       display: flex;
       align-items: center;
-      margin-left: 20px;
+      margin-left: 50px;
       .icon {
-        margin-bottom: 3px;
-        width: 15px;
+        // margin-bottom: 3px;
+        width: 18px;
       }
       .text {
         @include font12;
@@ -262,10 +305,10 @@ header {
       .btn {
         display: flex;
         align-items: center;
-        padding: 5px 40px;
+        padding: 5px 50px;
         .icon {
           display: flex;
-          width: 25px;
+          width: 20px;
         }
         .text {
           margin-left: 10px;
