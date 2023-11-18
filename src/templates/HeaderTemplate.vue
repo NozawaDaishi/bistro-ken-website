@@ -5,9 +5,8 @@ import useRouterFunctions from '@/composables/useRouterFunctions'
 
 const { routerPush } = useRouterFunctions()
 const headerStore = useHeaderStore()
-const { isHoveredMenu, isHoveredScrollToTopBtn, isScrolled } =
-  storeToRefs(headerStore)
-const { setHoveredMenu, setHoveredScrollToTopBtn, scrollToTop } = headerStore
+const { isHoveredMenu, isScrolled } = storeToRefs(headerStore)
+const { setHoveredMenu, scrollToTop } = headerStore
 </script>
 
 <template>
@@ -25,8 +24,19 @@ const { setHoveredMenu, setHoveredScrollToTopBtn, scrollToTop } = headerStore
       />
     </div>
     <nav :class="[{ [classes.isScrolled]: isScrolled }]">
+      <button :class="classes.list">
+        <div :class="classes.icon">
+          <img
+            src="@/assets/icons/header/location_dot_solid_light.svg"
+            alt="address_icon"
+          />
+        </div>
+        <div :class="classes.text">
+          {{ $t('nav.address') }}
+        </div>
+      </button>
       <!-- TODO: リンクの追加 -->
-      <button>
+      <button :class="classes.list">
         <div :class="classes.icon">
           <img
             src="@/assets/icons/header/instagram_light.svg"
@@ -56,29 +66,37 @@ const { setHoveredMenu, setHoveredScrollToTopBtn, scrollToTop } = headerStore
       <div
         :class="[classes.menu_list, { [classes.isHoveredMenu]: isHoveredMenu }]"
       >
-        <div :class="classes.icon">
-          <img
-            src="@/assets/icons/header/instagram_dark.svg"
-            alt="instagram_icon"
-          />
-        </div>
+        <button :class="classes.btn">
+          <div :class="classes.icon">
+            <img
+              src="@/assets/icons/header/location_dot_solid_dark.svg"
+              alt="instagram_icon"
+            />
+          </div>
+          <div :class="classes.text">
+            {{ $t('nav.access') }}
+          </div>
+        </button>
+        <button :class="classes.btn">
+          <div :class="classes.icon">
+            <img
+              src="@/assets/icons/header/instagram_dark.svg"
+              alt="instagram_icon"
+            />
+          </div>
+          <div :class="classes.text">
+            {{ $t('nav.instagram') }}
+          </div>
+        </button>
       </div>
     </button>
     <button
       :class="[classes.scrollToTopBtn, { [classes.isScrolled]: !isScrolled }]"
       @click.stop.prevent="scrollToTop()"
-      @mouseenter="setHoveredScrollToTopBtn(true)"
-      @mouseleave="setHoveredScrollToTopBtn(false)"
     >
       <div :class="classes.icon">
         <img
-          v-if="!isHoveredScrollToTopBtn"
-          src="@/assets/icons/header/scroll_to_top_icon_dark.svg"
-          alt="scrollToTopBtnIcon"
-        />
-        <img
-          v-if="isHoveredScrollToTopBtn"
-          src="@/assets/icons/header/scroll_to_top_icon_light.svg"
+          src="@/assets/icons/header/scroll_to_top_icon.svg"
           alt="scrollToTopBtnIcon"
         />
       </div>
@@ -153,18 +171,18 @@ header {
         opacity 0.3s ease-in-out,
         visibility 0s linear 1s;
     }
-    button {
+    .list {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      margin-left: 20px;
       .icon {
-        width: 20px;
+        margin-bottom: 3px;
+        width: 15px;
       }
       .text {
         @include font12;
         color: white;
-        margin-top: 5px;
+        margin-left: 6px;
         font-weight: lighter;
       }
     }
@@ -219,26 +237,39 @@ header {
     &_list {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 0;
+      align-items: flex-start;
+      justify-content: space-around;
       height: 0;
+      width: 0;
       opacity: 0;
       visibility: hidden;
       transition:
-        width 0.3s ease-in-out,
         height 0.3s ease-in-out,
-        opacity 0.3s ease-in-out,
-        visibility 0.3s ease-in-out;
+        width 0.3s ease-in-out,
+        opacity 0.1s ease,
+        visibility 0.1s ease;
       &.isHoveredMenu {
-        width: inherit;
         height: inherit;
+        width: inherit;
         opacity: 1;
         visibility: visible;
+        transition:
+          height 0s ease-in-out,
+          width 0s ease-in-out,
+          opacity 0s ease 0.3s,
+          visibility 0s ease 0.3s;
       }
-      .icon {
+      .btn {
         display: flex;
-        width: 20px;
+        align-items: center;
+        padding: 5px 40px;
+        .icon {
+          display: flex;
+          width: 20px;
+        }
+        .text {
+          margin-left: 10px;
+        }
       }
     }
   }
@@ -267,7 +298,7 @@ header {
       width: 80px;
     }
     &:hover {
-      background-color: var(--black-transparent);
+      background-color: var(--light-gray-transparent);
     }
   }
 }

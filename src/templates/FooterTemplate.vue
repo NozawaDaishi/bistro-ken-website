@@ -21,7 +21,7 @@
       </div>
     </button>
     <div :class="classes.copyright">
-      <p :class="classes.text">© public bistro ken 2023</p>
+      <p :class="classes.text">{{ $t('commons.copyright') }}</p>
     </div>
   </div>
 </template>

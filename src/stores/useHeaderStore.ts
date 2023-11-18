@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 
 interface State {
   isHoveredMenu: boolean
-  isHoveredScrollToTopBtn: boolean
   isScrolled: boolean
   routerViewWrapperRef: HTMLElement | null
 }
@@ -10,7 +9,6 @@ interface State {
 const useHeaderStore = defineStore('useHeader', {
   state: (): State => ({
     isHoveredMenu: false,
-    isHoveredScrollToTopBtn: false,
     isScrolled: false,
     routerViewWrapperRef: null,
   }),
@@ -21,13 +19,6 @@ const useHeaderStore = defineStore('useHeader', {
      */
     setHoveredMenu(value: boolean) {
       this.isHoveredMenu = value
-    },
-    /**
-     * scrollToTopBtnのホバー状態を設定します。
-     * @param value scrollToTopBtnがホバーされたかどうかの真偽値。
-     */
-    setHoveredScrollToTopBtn(value: boolean) {
-      this.isHoveredScrollToTopBtn = value
     },
     /**
      * スクロール状態を設定します。
