@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "18.14.1"
+      - name: Install dependencies
+        run: npm install
+      # テストを追加する場合、以下のようなステップを加えます
+      # - name: Run tests
+      #   run: npm test
+      - name: Build
+        run: npm run build
