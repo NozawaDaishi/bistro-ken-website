@@ -42,7 +42,10 @@
             <div :class="classes.mail">
               <p :class="classes.icon_text">{{ $t('commons.mail') }}</p>
               <!-- eslint-disable vue/no-v-html -->
-              <p :class="classes.text" v-html="'bistro-ken@gmail.com'"></p>
+              <p
+                :class="classes.text"
+                v-html="'niigata.kobari.bistroken@gmail.com'"
+              ></p>
               <!-- eslint-enable vue/no-v-html -->
             </div>
             <div :class="classes.address">
@@ -84,7 +87,7 @@
   height: 500px;
   width: 100%;
   padding: 30px 50px 50px;
-  background-color: var(--secondary-color);
+  background-color: var(--accent-color);
   display: flex;
   flex-direction: column;
   .title {
@@ -206,14 +209,14 @@
           height: 70px;
           width: 25vw;
           border: 1.5px solid var(--dark-gray);
-          background-color: var(--secondary-color-transparent);
+          background-color: var(--accent-color-transparent);
           border-radius: 5px;
           display: flex;
           align-items: center;
           justify-content: center;
           margin-top: 30px;
           &:hover {
-            background-color: var(--secondary-color);
+            background-color: var(--accent-color);
           }
         }
       }

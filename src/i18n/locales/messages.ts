@@ -1,6 +1,9 @@
 const messages = {
   ja: {
     commons: {
+      news: 'News',
+      latest_info: '最新の情報',
+      instagram: 'Instagram',
       store_info: '店舗情報',
       business_hours: '営業時間',
       lunch: '・ランチ',
@@ -13,7 +16,7 @@ const messages = {
       tel: 'TEL',
       number: '090-XXXX-XXXX',
       mail: 'MAIL',
-      // mail_address: 'bistro-ken@gmail.com',
+      // mail_address: 'niigata.kobari.bistroken@gmail.com',
       postal_code: '〒950-2022',
       address: '新潟県新潟市西区小針2丁目42-10 佐山第二ビル2号',
       access_info: '・JR越後線 小針駅より徒歩5分',
@@ -29,7 +32,7 @@ const messages = {
       contact: 'Contact',
       instagram: 'Instagram',
       menu: 'Menu',
-      address: '新潟県新潟市西区小針2丁目42-10 佐山第二ビル',
+      address: '新潟県新潟市西区小針2丁目42-10 佐山第二ビル2号',
       contact_form: 'お問い合わせ',
       latest_information: '最新情報はこちら',
       menu_list: 'メニュー',
@@ -37,6 +40,7 @@ const messages = {
   },
   en: {
     commons: {
+      news: 'News',
       store_info: 'Store Info',
       business_hours: 'opening_hours',
       lunch: '・Lunch',
@@ -49,7 +53,7 @@ const messages = {
       tel: 'TEL',
       number: '090-XXXX-XXXX',
       mail: 'MAIL',
-      // mail_address: 'bistro-ken@gmail.com',
+      // mail_address: 'niigata.kobari.bistroken@gmail.com',
       postal_code: '〒950-2022',
       address:
         'Sayama Daini Building, 2-42-10 Kobari, Nishi Ward, Niigata City, Niigata Prefecture',

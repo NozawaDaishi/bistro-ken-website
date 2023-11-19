@@ -226,7 +226,7 @@ header {
     .list {
       display: flex;
       align-items: center;
-      margin-left: 50px;
+      margin-left: 45px;
       .icon {
         // margin-bottom: 3px;
         width: 18px;
@@ -236,6 +236,9 @@ header {
         color: white;
         margin-left: 6px;
         font-weight: lighter;
+        @include mq(full_header) {
+          display: none;
+        }
       }
     }
   }
