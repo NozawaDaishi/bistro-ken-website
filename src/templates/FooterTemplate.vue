@@ -11,7 +11,7 @@
       <div :class="classes.information_wrapper">
         <div :class="classes.icon">
           <img
-            src="@/assets/icons/header/instagram_dark.svg"
+            src="@/assets/icons/header/instagram_light.svg"
             alt="instagram_icon"
           />
         </div>
@@ -55,16 +55,20 @@
     &_wrapper {
       height: 70px;
       width: 25vw;
-      border: 1.5px solid var(--dark-gray);
+      background-color: var(--primary-color-transparent);
+      border-radius: 5px;
       display: flex;
       align-items: center;
       justify-content: center;
+      &:hover {
+        background-color: var(--primary-color);
+      }
       .icon {
         width: 20px;
       }
       .text {
         @include font16;
-        color: var(--dark-gray);
+        color: white;
         margin-left: 15px;
       }
     }

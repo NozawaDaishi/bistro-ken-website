@@ -46,7 +46,10 @@ const { setHoveredMenu, scrollToTop } = headerStore
           {{ $t('nav.address') }}
         </div>
       </button>
-      <button :class="classes.list">
+      <button
+        :class="classes.list"
+        @click.stop.prevent="routerPush('ContactPage')"
+      >
         <div :class="classes.icon">
           <img
             src="@/assets/icons/header/paper_plane_regular_light.svg"
@@ -109,7 +112,10 @@ const { setHoveredMenu, scrollToTop } = headerStore
             {{ $t('nav.access') }}
           </div>
         </button>
-        <button :class="classes.btn">
+        <button
+          :class="classes.btn"
+          @click.stop.prevent="routerPush('ContactPage')"
+        >
           <div :class="classes.icon">
             <img
               src="@/assets/icons/header/paper_plane_regular_dark.svg"
@@ -162,11 +168,14 @@ header {
   justify-content: space-between;
   transition:
     width 0.5s ease-in-out,
-    background-color 0.5s ease-in-out;
+    background-color 0.1s ease-in-out;
 
   &.isScrolled {
     width: 80px;
     background-color: var(--primary-color-transparent);
+    &:hover {
+      background-color: var(--primary-color);
+    }
   }
   .logoTitle {
     display: flex;
@@ -257,7 +266,7 @@ header {
       transform: translateY(50px);
     }
     &:hover {
-      height: 300px;
+      height: 350px;
       width: 200px;
     }
     &_icon {
