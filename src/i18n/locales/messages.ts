@@ -13,6 +13,7 @@ const messages = {
       regular_closing_day: '定休日',
       thursday: '・木曜日',
       non_scheduled_holiday: '・不定休',
+      contact: 'お問い合わせ',
       tel: 'TEL',
       number: '090-XXXX-XXXX',
       mail: 'MAIL',

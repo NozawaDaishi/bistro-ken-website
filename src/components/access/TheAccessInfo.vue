@@ -57,7 +57,7 @@ const center = { lat: 37.888328552246094, lng: 138.9954833984375 }
 .container {
   height: 35vw;
   width: 100%;
-  margin-top: 100px;
+  margin: 100px 0;
   padding: 30px 50px 50px;
   @include mq(sp) {
     height: 70vh;

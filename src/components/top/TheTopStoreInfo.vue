@@ -125,7 +125,7 @@
           margin-left: 25px;
           display: flex;
           flex-direction: column;
-          align-items: start;
+          align-items: flex-start;
           .dinner_time {
             margin-top: 15px;
           }
