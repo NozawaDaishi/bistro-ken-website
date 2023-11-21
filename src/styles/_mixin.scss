@@ -1,9 +1,10 @@
 // ブレイクポイントの設定
 $breakpoint: (
-  sp: 'screen and (max-width: 767px)',
+  sp: 'screen and (max-width: 884px)',
   tab: 'screen and (min-width: 768px)',
   pc: 'screen and (min-width: 1025px)',
-  full_header: 'screen and (max-width: 1072px)',
+  short_header: 'screen and (max-width: 1072px)',
+  small_access_info: 'screen and (max-width: 1370px)',
 );
 
 @mixin mq($bp) {

@@ -5,7 +5,9 @@ import {
   RouteRecordRaw,
 } from 'vue-router'
 import AppIndex from '@/pages/AppIndex.vue'
+import AccessPage from '@/pages/access/AccessPage.vue'
 import ContactPage from '@/pages/contact/ContactPage.vue'
+import MenuPage from '@/pages/menu/MenuPage.vue'
 import TopPage from '@/pages/top/TopPage.vue'
 
 const routes: RouteRecordRaw[] = [
@@ -19,6 +21,16 @@ const routes: RouteRecordRaw[] = [
         path: '',
         name: 'TopPage',
         component: TopPage,
+      },
+      {
+        path: 'menu',
+        name: 'MenuPage',
+        component: MenuPage,
+      },
+      {
+        path: 'access',
+        name: 'AccessPage',
+        component: AccessPage,
       },
       {
         path: 'contact',

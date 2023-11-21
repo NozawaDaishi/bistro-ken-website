@@ -33,11 +33,17 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  @include mq(sp) {
+    flex-direction: column;
+  }
   .produce {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 33.3vw;
+    @include mq(sp) {
+      width: 33.3vh;
+    }
     .text {
       @include font12;
       color: var(--dark-gray);
@@ -52,6 +58,9 @@
     width: 33.3vw;
     display: flex;
     justify-content: center;
+    @include mq(sp) {
+      width: 33.3vh;
+    }
     &_wrapper {
       height: 70px;
       width: 25vw;
@@ -60,6 +69,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      @include mq(sp) {
+        width: 25vh;
+      }
       &:hover {
         background-color: var(--primary-color);
       }
@@ -77,6 +89,9 @@
     width: 33.3vw;
     display: flex;
     justify-content: center;
+    @include mq(sp) {
+      width: 33.3vh;
+    }
     .text {
       @include font12;
       color: var(--dark-gray);

@@ -13,6 +13,42 @@ const info_list = [
     content: '2023年12月31日~1月4日までお休みとさせていただきます。',
     date_time: '2023-11-19 19:30',
   },
+  {
+    newsId: '1',
+    title: '開店のお知らせ',
+    content: 'この度、2023年12月15日に開店いたしますことをお知らせいたします。',
+    date_time: '2023-11-19 19:24',
+  },
+  {
+    newsId: '2',
+    title: '年末年始お休みのお知らせ',
+    content: '2023年12月31日~1月4日までお休みとさせていただきます。',
+    date_time: '2023-11-19 19:30',
+  },
+  {
+    newsId: '1',
+    title: '開店のお知らせ',
+    content: 'この度、2023年12月15日に開店いたしますことをお知らせいたします。',
+    date_time: '2023-11-19 19:24',
+  },
+  {
+    newsId: '2',
+    title: '年末年始お休みのお知らせ',
+    content: '2023年12月31日~1月4日までお休みとさせていただきます。',
+    date_time: '2023-11-19 19:30',
+  },
+  {
+    newsId: '1',
+    title: '開店のお知らせ',
+    content: 'この度、2023年12月15日に開店いたしますことをお知らせいたします。',
+    date_time: '2023-11-19 19:24',
+  },
+  {
+    newsId: '2',
+    title: '年末年始お休みのお知らせ',
+    content: '2023年12月31日~1月4日までお休みとさせていただきます。',
+    date_time: '2023-11-19 19:30',
+  },
 ]
 </script>
 
@@ -82,6 +118,12 @@ const info_list = [
           height: 100%;
           width: 80%;
           margin-top: 15px;
+          overflow-y: scroll;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+          &::-webkit-scrollbar {
+            display: none;
+          }
           &_item {
             height: 15%;
             width: 100%;
@@ -90,6 +132,9 @@ const info_list = [
             display: flex;
             align-items: center;
             margin-bottom: 10px;
+            &:hover {
+              background-color: var(--third-color);
+            }
             .date_time {
               @include font12;
               color: var(--dark-gray);

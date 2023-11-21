@@ -19,6 +19,7 @@ const messages = {
       // mail_address: 'niigata.kobari.bistroken@gmail.com',
       postal_code: '〒950-2022',
       address: '新潟県新潟市西区小針2丁目42-10 佐山第二ビル2号',
+      access: 'アクセス',
       access_info: '・JR越後線 小針駅より徒歩5分',
       parking_info: '・駐車場5台',
       google_map: 'Google Map',

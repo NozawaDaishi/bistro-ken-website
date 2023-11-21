@@ -24,7 +24,10 @@ const { setHoveredMenu, scrollToTop } = headerStore
       />
     </div>
     <nav :class="[{ [classes.isScrolled]: isScrolled }]">
-      <button :class="classes.list">
+      <button
+        :class="classes.list"
+        @click.stop.prevent="routerPush('MenuPage')"
+      >
         <div :class="classes.icon">
           <img
             src="@/assets/icons/header/clipboard_regular_light.svg"
@@ -35,7 +38,10 @@ const { setHoveredMenu, scrollToTop } = headerStore
           {{ $t('nav.menu_list') }}
         </div>
       </button>
-      <button :class="classes.list">
+      <button
+        :class="classes.list"
+        @click.stop.prevent="routerPush('AccessPage')"
+      >
         <div :class="classes.icon">
           <img
             src="@/assets/icons/header/location_dot_solid_light.svg"
@@ -90,7 +96,10 @@ const { setHoveredMenu, scrollToTop } = headerStore
       <div
         :class="[classes.menu_list, { [classes.isHoveredMenu]: isHoveredMenu }]"
       >
-        <button :class="classes.btn">
+        <button
+          :class="classes.btn"
+          @click.stop.prevent="routerPush('MenuPage')"
+        >
           <div :class="classes.icon">
             <img
               src="@/assets/icons/header/clipboard_regular_dark.svg"
@@ -101,7 +110,10 @@ const { setHoveredMenu, scrollToTop } = headerStore
             {{ $t('nav.menu') }}
           </div>
         </button>
-        <button :class="classes.btn">
+        <button
+          :class="classes.btn"
+          @click.stop.prevent="routerPush('AccessPage')"
+        >
           <div :class="classes.icon">
             <img
               src="@/assets/icons/header/location_dot_solid_dark.svg"
@@ -236,7 +248,7 @@ header {
         color: white;
         margin-left: 6px;
         font-weight: lighter;
-        @include mq(full_header) {
+        @include mq(short_header) {
           display: none;
         }
       }
@@ -254,6 +266,7 @@ header {
     justify-content: center;
     margin-left: 11px;
     background-color: var(--light-gray);
+    border: 0.1px solid var(--dark-gray);
     border-radius: 10px;
     height: 50px;
     width: 50px;
@@ -354,6 +367,7 @@ header {
     }
     &:hover {
       background-color: var(--light-gray-transparent);
+      border: 0.1px solid var(--dark-gray);
     }
   }
 }
