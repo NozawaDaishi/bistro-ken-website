@@ -1,4 +1,6 @@
-<script setup lang="ts" name="FooterTemplate"></script>
+<script setup lang="ts" name="FooterTemplate">
+import { INSTAGRAM_URL } from '@/consts'
+</script>
 
 <template>
   <div :class="classes.container">
@@ -6,9 +8,13 @@
       <p :class="classes.text">{{ $t('commons.produced_by') }}</p>
       <p :class="classes.name">{{ $t('commons.producer') }}</p>
     </div>
-    <!-- TODO: リンク追加 -->
-    <button :class="classes.information">
-      <div :class="classes.information_wrapper">
+    <a
+      type="button"
+      :href="INSTAGRAM_URL"
+      target="_blank"
+      :class="classes.information"
+    >
+      <div :class="classes.informationWrapper">
         <div :class="classes.icon">
           <img
             src="@/assets/icons/header/instagram_light.svg"
@@ -19,7 +25,7 @@
           {{ $t('nav.latest_information') }}
         </div>
       </div>
-    </button>
+    </a>
     <div :class="classes.copyright">
       <p :class="classes.text">{{ $t('commons.copyright') }}</p>
     </div>
@@ -33,17 +39,11 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  @include mq(sp) {
-    flex-direction: column;
-  }
   .produce {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 33.3vw;
-    @include mq(sp) {
-      width: 33.3vh;
-    }
     .text {
       @include font12;
       color: var(--dark-gray);
@@ -58,10 +58,8 @@
     width: 33.3vw;
     display: flex;
     justify-content: center;
-    @include mq(sp) {
-      width: 33.3vh;
-    }
-    &_wrapper {
+    cursor: pointer;
+    &Wrapper {
       height: 70px;
       width: 25vw;
       background-color: var(--primary-color-transparent);
@@ -69,9 +67,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      @include mq(sp) {
-        width: 25vh;
-      }
       &:hover {
         background-color: var(--primary-color);
       }
@@ -89,12 +84,29 @@
     width: 33.3vw;
     display: flex;
     justify-content: center;
-    @include mq(sp) {
-      width: 33.3vh;
-    }
     .text {
       @include font12;
       color: var(--dark-gray);
+    }
+  }
+}
+@include mq(sp) {
+  .container {
+    flex-direction: column;
+    .produce {
+      display: flex;
+      flex-direction: column;
+      width: 33.3vh;
+    }
+    .information {
+      width: 33.3vh;
+
+      &Wrapper {
+        width: 33.3vh;
+      }
+    }
+    .copyright {
+      width: 33.3vh;
     }
   }
 }

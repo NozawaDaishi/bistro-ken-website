@@ -5,6 +5,8 @@ $breakpoint: (
   pc: 'screen and (min-width: 1025px)',
   short_header: 'screen and (max-width: 1072px)',
   small_access_info: 'screen and (max-width: 1370px)',
+  small_store_info: 'screen and (max-width: 946px)',
+  word_break: 'screen and (max-width: 523px)',
 );
 
 @mixin mq($bp) {

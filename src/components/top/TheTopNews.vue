@@ -57,22 +57,22 @@ const info_list = [
     <div :class="classes.title">
       {{ $t('commons.news') }}
     </div>
-    <div :class="classes.container_wrapper">
+    <div :class="classes.containerWrapper">
       <div :class="classes.latest">
-        <div :class="classes.latest_info">
+        <div :class="classes.latestInfo">
           <p :class="classes.text">{{ $t('commons.latest_info') }}</p>
           <div :class="classes.list">
             <div
               v-for="item in info_list"
               :key="item.newsId"
-              :class="classes.list_item"
+              :class="classes.listItem"
             >
-              <div :class="classes.date_time">{{ item.date_time }}</div>
-              <div :class="classes.news_title">{{ item.title }}</div>
+              <div :class="classes.dateTime">{{ item.date_time }}</div>
+              <div :class="classes.newsTitle">{{ item.title }}</div>
             </div>
           </div>
         </div>
-        <div :class="classes.latest_post">
+        <div :class="classes.latestPost">
           <p :class="classes.text">{{ $t('commons.instagram') }}</p>
         </div>
       </div>
@@ -87,11 +87,15 @@ const info_list = [
   padding: 30px 50px 50px;
   display: flex;
   flex-direction: column;
+  @include mq(sp) {
+    height: auto;
+    margin: 80px 0;
+  }
   .title {
     @include font32Bold;
     color: var(--dark-gray);
   }
-  &_wrapper {
+  &Wrapper {
     height: 100%;
     width: 100%;
     background-color: var(--light-gray);
@@ -103,13 +107,21 @@ const info_list = [
       width: 100%;
       display: flex;
       align-items: center;
-      &_info {
+      @include mq(sp) {
+        flex-direction: column;
+      }
+      &Info {
         height: 80%;
         width: 50%;
         border-right: 1px solid var(--dark-gray);
         display: flex;
         flex-direction: column;
         align-items: center;
+        @include mq(sp) {
+          width: 90%;
+          border-right: none;
+          border-bottom: 1px solid var(--dark-gray);
+        }
         .text {
           @include font14;
           color: var(--dark-gray);
@@ -124,7 +136,7 @@ const info_list = [
           &::-webkit-scrollbar {
             display: none;
           }
-          &_item {
+          &Item {
             height: 15%;
             width: 100%;
             background-color: var(--secondary-color);
@@ -135,12 +147,12 @@ const info_list = [
             &:hover {
               background-color: var(--third-color);
             }
-            .date_time {
+            .dateTime {
               @include font12;
               color: var(--dark-gray);
               margin-left: 15px;
             }
-            .news_title {
+            .newsTitle {
               @include font12;
               color: var(--dark-gray);
               margin-left: 15px;
@@ -148,7 +160,7 @@ const info_list = [
           }
         }
       }
-      &_post {
+      &Post {
         height: 80%;
         width: 50%;
         display: flex;

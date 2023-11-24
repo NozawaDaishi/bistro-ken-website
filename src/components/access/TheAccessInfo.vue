@@ -1,7 +1,7 @@
 <script setup lang="ts" name="AccessInfo">
 import { GoogleMap, Marker } from 'vue3-google-map'
+import { GOOGLE_MAP_LAT_LNG } from '@/consts'
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-const center = { lat: 37.888328552246094, lng: 138.9954833984375 }
 </script>
 
 <template>
@@ -9,22 +9,22 @@ const center = { lat: 37.888328552246094, lng: 138.9954833984375 }
     <div :class="classes.title">
       {{ $t('commons.access') }}
     </div>
-    <div :class="classes.container_wrapper">
+    <div :class="classes.containerWrapper">
       <div :class="classes.map">
         <GoogleMap
           :api-key="apiKey"
-          :center="center"
+          :center="GOOGLE_MAP_LAT_LNG"
           :zoom="16.5"
           map-type="roadmap"
           style="width: 100%; height: 100%"
           :street-view-control="false"
           :map-type-control="false"
         >
-          <Marker :options="{ position: center }" />
+          <Marker :options="{ position: GOOGLE_MAP_LAT_LNG }" />
         </GoogleMap>
       </div>
       <div :class="classes.info">
-        <div :class="classes.info_wrapper">
+        <div :class="classes.infoWrapper">
           <div :class="classes.address">
             <div :class="classes.icon">
               <img
@@ -32,7 +32,7 @@ const center = { lat: 37.888328552246094, lng: 138.9954833984375 }
                 alt="address_icon"
               />
             </div>
-            <div :class="classes.address_wrapper">
+            <div :class="classes.addressWrapper">
               <p :class="classes.postal_code">
                 {{ $t('commons.postal_code') }}
               </p>
@@ -43,8 +43,8 @@ const center = { lat: 37.888328552246094, lng: 138.9954833984375 }
             <p :class="classes.access_info">
               {{ $t('commons.access_info') }}
             </p>
-            <p :class="classes.parking_info">
-              {{ $t('commons.parking_info') }}
+            <p :class="classes.parkingInfo">
+              {{ $t('commons.parkingInfo') }}
             </p>
           </div>
         </div>
@@ -70,7 +70,7 @@ const center = { lat: 37.888328552246094, lng: 138.9954833984375 }
       padding: 0px 30px;
     }
   }
-  &_wrapper {
+  &Wrapper {
     height: 100%;
     width: 100%;
     display: flex;
@@ -100,7 +100,7 @@ const center = { lat: 37.888328552246094, lng: 138.9954833984375 }
         padding: 0;
         @include font16;
       }
-      &_wrapper {
+      &Wrapper {
         display: flex;
         flex-direction: column;
         .address {
@@ -118,7 +118,7 @@ const center = { lat: 37.888328552246094, lng: 138.9954833984375 }
               width: 20px;
             }
           }
-          &_wrapper {
+          &Wrapper {
             margin-left: 25px;
             @include mq(sp) {
               margin-left: 0;
@@ -136,7 +136,7 @@ const center = { lat: 37.888328552246094, lng: 138.9954833984375 }
             @include font16;
             margin-left: 0px;
           }
-          .parking_info {
+          .parkingInfo {
             margin-top: 5px;
           }
         }

@@ -1,46 +1,52 @@
-<script setup lang="ts" name="TopStoreInfo"></script>
+<script setup lang="ts" name="TopStoreInfo">
+import { GOOGLE_MAP_DETAIL } from '@/consts'
+</script>
 
 <template>
   <div :class="classes.container">
     <div :class="classes.title">
       {{ $t('commons.store_info') }}
     </div>
-    <div :class="classes.container_wrapper">
-      <div :class="classes.open_close">
-        <p :class="classes.open_title">
-          {{ $t('commons.business_hours') }}
-        </p>
-        <div :class="classes.lunch_dinner">
-          <div :class="classes.lunch_dinner_title">
-            <p :class="classes.lunch_title">{{ $t('commons.lunch') }}</p>
-            <p :class="classes.dinner_title">{{ $t('commons.dinner') }}</p>
-          </div>
-          <div :class="classes.lunch_dinner_time">
-            <p :class="classes.lunch_time">{{ $t('commons.lunch_time') }}</p>
-            <p :class="classes.dinner_time">
-              {{ $t('commons.dinner_time') }}
-            </p>
+    <div :class="classes.containerWrapper">
+      <div :class="classes.openClose">
+        <div :class="classes.open">
+          <p :class="classes.openTitle">
+            {{ $t('commons.business_hours') }}
+          </p>
+          <div :class="classes.lunch_dinner">
+            <div :class="classes.lunch_dinnerTitle">
+              <p :class="classes.lunchTitle">{{ $t('commons.lunch') }}</p>
+              <p :class="classes.dinnerTitle">{{ $t('commons.dinner') }}</p>
+            </div>
+            <div :class="classes.lunch_dinnerTime">
+              <p :class="classes.lunchTime">{{ $t('commons.lunch_time') }}</p>
+              <p :class="classes.dinnerTime">
+                {{ $t('commons.dinner_time') }}
+              </p>
+            </div>
           </div>
         </div>
-        <p :class="classes.close_title">
-          {{ $t('commons.regular_closing_day') }}
-        </p>
-        <p :class="classes.thursday">
-          {{ $t('commons.thursday') }}
-        </p>
-        <p :class="classes.non_scheduled_holiday">
-          {{ $t('commons.non_scheduled_holiday') }}
-        </p>
+        <div :class="classes.close">
+          <p :class="classes.closeTitle">
+            {{ $t('commons.regular_closing_day') }}
+          </p>
+          <p :class="classes.thursday">
+            {{ $t('commons.thursday') }}
+          </p>
+          <p :class="classes.nonScheduledHoliday">
+            {{ $t('commons.non_scheduled_holiday') }}
+          </p>
+        </div>
       </div>
       <div :class="classes.details">
-        <div :class="classes.details_wrapper">
+        <div :class="classes.detailsWrapper">
           <div :class="classes.information">
             <div :class="classes.tel">
-              <p :class="classes.icon_text">{{ $t('commons.tel') }}</p>
+              <p :class="classes.iconText">{{ $t('commons.tel') }}</p>
               <p :class="classes.text">{{ $t('commons.number') }}</p>
             </div>
             <div :class="classes.mail">
-              <p :class="classes.icon_text">{{ $t('commons.mail') }}</p>
+              <p :class="classes.iconText">{{ $t('commons.mail') }}</p>
               <!-- eslint-disable vue/no-v-html -->
               <p
                 :class="classes.text"
@@ -55,7 +61,7 @@
                   alt="address_icon"
                 />
               </div>
-              <div :class="classes.address_wrapper">
+              <div :class="classes.addressWrapper">
                 <p :class="classes.postal_code">
                   {{ $t('commons.postal_code') }}
                 </p>
@@ -66,16 +72,16 @@
               <p :class="classes.access_info">
                 {{ $t('commons.access_info') }}
               </p>
-              <p :class="classes.parking_info">
+              <p :class="classes.parkingInfo">
                 {{ $t('commons.parking_info') }}
               </p>
             </div>
           </div>
-          <button :class="classes.map">
+          <a :href="GOOGLE_MAP_DETAIL" target="_blank" :class="classes.map">
             <div :class="classes.text">
               {{ $t('commons.google_map') }}
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -90,15 +96,26 @@
   background-color: var(--accent-color);
   display: flex;
   flex-direction: column;
+  @include mq(small_store_info) {
+    height: auto;
+    align-items: center;
+    padding: 30px 25px 50px;
+  }
   .title {
     @include font32Bold;
     color: var(--dark-gray);
+    @include mq(small_store_info) {
+      align-self: flex-start;
+    }
   }
-  &_wrapper {
+  &Wrapper {
     height: 100%;
-    width: 100%;
     display: flex;
-    .open_close {
+    @include mq(small_store_info) {
+      height: auto;
+      flex-direction: column;
+    }
+    .openClose {
       height: 100%;
       width: 100%;
       display: flex;
@@ -107,41 +124,45 @@
       align-items: flex-start;
       color: var(--dark-gray);
       margin-top: 30px;
-      .open_title {
-        @include font22;
-      }
-      .lunch_dinner {
-        @include font18;
-        display: flex;
-        margin-top: 15px;
-        &_title {
+      .open {
+        &Title {
+          @include font22;
+        }
+        .lunch_dinner {
+          @include font18;
           display: flex;
-          flex-direction: column;
-          .dinner_title {
-            margin-top: 15px;
+          margin-top: 15px;
+          &Title {
+            display: flex;
+            flex-direction: column;
+            .dinnerTitle {
+              margin-top: 15px;
+            }
+          }
+          &Time {
+            margin-left: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            .dinnerTime {
+              margin-top: 15px;
+            }
           }
         }
-        &_time {
-          margin-left: 25px;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          .dinner_time {
-            margin-top: 15px;
-          }
+      }
+      .close {
+        &Title {
+          @include font22;
+          margin-top: 20px;
         }
-      }
-      .close_title {
-        @include font22;
-        margin-top: 20px;
-      }
-      .thursday {
-        @include font18;
-        margin-top: 15px;
-      }
-      .non_scheduled_holiday {
-        @include font18;
-        margin-top: 15px;
+        .thursday {
+          @include font18;
+          margin-top: 15px;
+        }
+        .nonScheduledHoliday {
+          @include font18;
+          margin-top: 15px;
+        }
       }
     }
     .details {
@@ -153,7 +174,12 @@
       align-items: flex-end;
       @include font16;
       color: var(--dark-gray);
-      &_wrapper {
+      @include mq(small_store_info) {
+        margin-top: 30px;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+      &Wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -163,7 +189,7 @@
           align-items: flex-start;
           .tel {
             display: flex;
-            .icon_text {
+            .iconText {
               width: 30px;
             }
             .text {
@@ -173,7 +199,7 @@
           .mail {
             display: flex;
             margin-top: 15px;
-            .icon_text {
+            .iconText {
               width: 30px;
             }
             .text {
@@ -192,15 +218,20 @@
                 width: 20px;
               }
             }
-            &_wrapper {
+            &Wrapper {
               margin-left: 25px;
+              .text {
+                @include mq(word_break) {
+                  width: 250px;
+                }
+              }
             }
           }
           .access {
             @include font14;
             margin-top: 10px;
             margin-left: 55px;
-            .parking_info {
+            .parkingInfo {
               margin-top: 5px;
             }
           }
@@ -209,14 +240,20 @@
           height: 70px;
           width: 25vw;
           border: 1.5px solid var(--dark-gray);
-          background-color: var(--accent-color-transparent);
           border-radius: 5px;
           display: flex;
           align-items: center;
           justify-content: center;
           margin-top: 30px;
+          cursor: pointer;
+          transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+          @include mq(small_store_info) {
+            width: 30vh;
+          }
           &:hover {
-            background-color: var(--accent-color);
+            border: none;
+            color: var(--accent-color);
+            box-shadow: var(--dark-gray) 0 80px 0px 2px inset;
           }
         }
       }

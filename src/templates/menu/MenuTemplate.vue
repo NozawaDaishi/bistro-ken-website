@@ -1,4 +1,9 @@
-<script setup lang="ts" name="MenuTemplate"></script>
+<script setup lang="ts" name="MenuTemplate">
+import useHeaderStore from '@/stores/useHeaderStore'
+const headerStore = useHeaderStore()
+const { scrollToTop } = headerStore
+scrollToTop()
+</script>
 
 <template>
   <div></div>

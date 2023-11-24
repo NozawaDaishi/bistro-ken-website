@@ -6,29 +6,29 @@ const { routerPush } = useRouterFunctions()
 
 <template>
   <div :class="classes.container">
-    <div :class="classes.container_wrapper">
-      <div :class="classes.open_close">
+    <div :class="classes.containerWrapper">
+      <div :class="classes.openClose">
         <div :class="classes.open">
-          <p :class="classes.open_title">
+          <p :class="classes.openTitle">
             {{ $t('commons.business_hours') }}
           </p>
           <div :class="classes.lunch_dinner">
-            <div :class="classes.lunch_dinner_title">
-              <p :class="classes.lunch_title">{{ $t('commons.lunch') }}</p>
-              <p :class="classes.dinner_title">{{ $t('commons.dinner') }}</p>
+            <div :class="classes.lunch_dinnerTitle">
+              <p :class="classes.lunchTitle">{{ $t('commons.lunch') }}</p>
+              <p :class="classes.dinnerTitle">{{ $t('commons.dinner') }}</p>
             </div>
-            <div :class="classes.lunch_dinner_time">
-              <p :class="classes.lunch_time">
+            <div :class="classes.lunch_dinnerTime">
+              <p :class="classes.lunchTime">
                 {{ $t('commons.lunch_time') }}
               </p>
-              <p :class="classes.dinner_time">
+              <p :class="classes.dinnerTime">
                 {{ $t('commons.dinner_time') }}
               </p>
             </div>
           </div>
         </div>
         <div :class="classes.close">
-          <p :class="classes.close_title">
+          <p :class="classes.closeTitle">
             {{ $t('commons.regular_closing_day') }}
           </p>
           <p :class="classes.thursday">
@@ -40,12 +40,12 @@ const { routerPush } = useRouterFunctions()
         </div>
       </div>
       <div :class="classes.contact">
-        <button
-          :class="classes.contact_wrapper"
+        <a
+          :class="classes.contactWrapper"
           @click.stop.prevent="routerPush('ContactPage')"
         >
           {{ $t('commons.contact') }}
-        </button>
+        </a>
       </div>
     </div>
   </div>
@@ -58,11 +58,11 @@ const { routerPush } = useRouterFunctions()
   padding: 30px 50px 50px;
   background-color: var(--accent-color);
   display: flex;
-  &_wrapper {
+  &Wrapper {
     height: 100%;
     width: 100%;
     display: flex;
-    .open_close {
+    .openClose {
       height: 100%;
       width: 100%;
       display: flex;
@@ -70,26 +70,26 @@ const { routerPush } = useRouterFunctions()
       align-items: center;
       color: var(--dark-gray);
       .open {
-        &_title {
+        &Title {
           @include font32Bold;
         }
         .lunch_dinner {
           @include font22;
           display: flex;
           margin-top: 15px;
-          &_title {
+          &Title {
             display: flex;
             flex-direction: column;
-            .dinner_title {
+            .dinnerTitle {
               margin-top: 15px;
             }
           }
-          &_time {
+          &Time {
             margin-left: 25px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            .dinner_time {
+            .dinnerTime {
               margin-top: 15px;
             }
           }
@@ -97,7 +97,7 @@ const { routerPush } = useRouterFunctions()
       }
       .close {
         margin-left: 100px;
-        &_title {
+        &Title {
           @include font32Bold;
         }
         .thursday {
@@ -119,7 +119,7 @@ const { routerPush } = useRouterFunctions()
       align-items: flex-end;
       @include font16;
       color: var(--dark-gray);
-      &_wrapper {
+      &Wrapper {
         height: 70px;
         width: 25vw;
         border: 1.5px solid var(--dark-gray);
@@ -128,8 +128,12 @@ const { routerPush } = useRouterFunctions()
         align-items: center;
         justify-content: center;
         margin-top: 30px;
+        cursor: pointer;
+        transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
         &:hover {
-          background-color: var(--accent-color);
+          border: none;
+          color: var(--accent-color);
+          box-shadow: var(--dark-gray) 0 80px 0px 2px inset;
         }
       }
     }
