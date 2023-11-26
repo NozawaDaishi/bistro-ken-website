@@ -231,9 +231,24 @@ header {
       align-items: center;
       margin-left: 45px;
       cursor: pointer;
-      padding-bottom: 3px;
-      &:hover {
-        border-bottom: 1.5px solid white;
+      padding-bottom: 5px;
+      position: relative;
+      &::before {
+        background: white;
+        content: '';
+        width: 100%;
+        height: 1px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        margin: auto;
+        transform-origin: right top;
+        transform: scale(0, 1);
+        transition: transform 0.3s;
+      }
+      &:hover::before {
+        transform-origin: left top;
+        transform: scale(1, 1);
       }
       .icon {
         width: 18px;
@@ -257,7 +272,7 @@ header {
       position: relative;
       .qrCode {
         position: absolute;
-        top: 45px;
+        top: 40px;
         left: 0px;
         height: 80px;
         width: 80px;
