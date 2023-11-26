@@ -1,55 +1,11 @@
 <script setup lang="ts" name="TopNews">
-// TODO: API結合時に削除
-const info_list = [
-  {
-    newsId: '1',
-    title: '開店のお知らせ',
-    content: 'この度、2023年12月15日に開店いたしますことをお知らせいたします。',
-    date_time: '2023-11-19 19:24',
-  },
-  {
-    newsId: '2',
-    title: '年末年始お休みのお知らせ',
-    content: '2023年12月31日~1月4日までお休みとさせていただきます。',
-    date_time: '2023-11-19 19:30',
-  },
-  {
-    newsId: '1',
-    title: '開店のお知らせ',
-    content: 'この度、2023年12月15日に開店いたしますことをお知らせいたします。',
-    date_time: '2023-11-19 19:24',
-  },
-  {
-    newsId: '2',
-    title: '年末年始お休みのお知らせ',
-    content: '2023年12月31日~1月4日までお休みとさせていただきます。',
-    date_time: '2023-11-19 19:30',
-  },
-  {
-    newsId: '1',
-    title: '開店のお知らせ',
-    content: 'この度、2023年12月15日に開店いたしますことをお知らせいたします。',
-    date_time: '2023-11-19 19:24',
-  },
-  {
-    newsId: '2',
-    title: '年末年始お休みのお知らせ',
-    content: '2023年12月31日~1月4日までお休みとさせていただきます。',
-    date_time: '2023-11-19 19:30',
-  },
-  {
-    newsId: '1',
-    title: '開店のお知らせ',
-    content: 'この度、2023年12月15日に開店いたしますことをお知らせいたします。',
-    date_time: '2023-11-19 19:24',
-  },
-  {
-    newsId: '2',
-    title: '年末年始お休みのお知らせ',
-    content: '2023年12月31日~1月4日までお休みとさせていただきます。',
-    date_time: '2023-11-19 19:30',
-  },
-]
+import useNewsStore from '@/stores/useNewsStore'
+import { storeToRefs } from 'pinia'
+const newsStore = useNewsStore()
+const { currentNewsArticle, newsArticles } = storeToRefs(newsStore)
+const { getNewsArticles, selectNewsArticle } = newsStore
+
+getNewsArticles()
 </script>
 
 <template>
@@ -58,22 +14,32 @@ const info_list = [
       {{ $t('commons.news') }}
     </div>
     <div :class="classes.containerWrapper">
-      <div :class="classes.latest">
-        <div :class="classes.latestInfo">
-          <p :class="classes.text">{{ $t('commons.latest_info') }}</p>
-          <div :class="classes.list">
-            <div
-              v-for="item in info_list"
-              :key="item.newsId"
-              :class="classes.listItem"
-            >
-              <div :class="classes.dateTime">{{ item.date_time }}</div>
-              <div :class="classes.newsTitle">{{ item.title }}</div>
+      <div :class="classes.latestInfo">
+        <p :class="classes.text">{{ $t('commons.latest_info') }}</p>
+        <div :class="classes.list">
+          <div
+            v-for="item in newsArticles"
+            :key="item.id"
+            :class="[
+              classes.listItem,
+              { [classes.listItem_active]: item === currentNewsArticle },
+            ]"
+            @click.stop.prevent="selectNewsArticle(item)"
+          >
+            <div :class="classes.news_header">
+              <div :class="classes.dateTime">
+                {{ item.attributes.publishedAtInJST }}
+              </div>
+              <div :class="classes.newsTitle">{{ item.attributes.title }}</div>
             </div>
+            <!-- eslint-disable vue/no-v-html -->
+            <div
+              v-show="item === currentNewsArticle"
+              :class="classes.content"
+              v-html="item.attributes.content"
+            ></div>
+            <!-- eslint-enable vue/no-v-html -->
           </div>
-        </div>
-        <div :class="classes.latestPost">
-          <p :class="classes.text">{{ $t('commons.instagram') }}</p>
         </div>
       </div>
     </div>
@@ -82,93 +48,88 @@ const info_list = [
 
 <style lang="scss" module="classes">
 .container {
-  height: 500px;
   width: 100%;
   padding: 30px 50px 50px;
   display: flex;
   flex-direction: column;
   @include mq(sp) {
     height: auto;
-    margin: 80px 0;
+    padding: 30px 25px 50px;
+    margin: 0px 0;
   }
   .title {
     @include font32Bold;
     color: var(--dark-gray);
   }
   &Wrapper {
-    height: 100%;
     width: 100%;
     background-color: var(--light-gray);
     border-radius: 5px;
     margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    .latest {
-      height: 100%;
+    .latestInfo {
       width: 100%;
       display: flex;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
+      padding: 15px;
       @include mq(sp) {
-        flex-direction: column;
+        width: 90%;
       }
-      &Info {
-        height: 80%;
-        width: 50%;
-        border-right: 1px solid var(--dark-gray);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        @include mq(sp) {
-          width: 90%;
-          border-right: none;
-          border-bottom: 1px solid var(--dark-gray);
+      .text {
+        @include font14;
+        color: var(--dark-gray);
+      }
+      .list {
+        width: 80%;
+        margin-top: 15px;
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          display: none;
         }
-        .text {
-          @include font14;
+        &Item {
+          width: 100%;
+          background-color: var(--secondary-color);
+          border-radius: 5px;
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 10px;
+          padding: 10px 15px;
+          @include font12;
           color: var(--dark-gray);
-        }
-        .list {
-          height: 100%;
-          width: 80%;
-          margin-top: 15px;
-          overflow-y: scroll;
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-          &::-webkit-scrollbar {
-            display: none;
+          cursor: pointer;
+          &:hover {
+            background-color: var(--third-color);
           }
-          &Item {
-            height: 15%;
-            width: 100%;
-            background-color: var(--secondary-color);
-            border-radius: 5px;
+          .news_header {
             display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            &:hover {
-              background-color: var(--third-color);
+            @include mq(sp) {
+              flex-direction: column;
             }
+            .newsTitle,
             .dateTime {
-              @include font12;
-              color: var(--dark-gray);
-              margin-left: 15px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
             }
             .newsTitle {
-              @include font12;
-              color: var(--dark-gray);
+              @include font12Bold;
               margin-left: 15px;
+              @include mq(sp) {
+                margin-left: 0;
+                margin-top: 15px;
+              }
             }
           }
-        }
-      }
-      &Post {
-        height: 80%;
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        .text {
-          @include font14;
-          color: var(--dark-gray);
+          .content {
+            margin-top: 15px;
+          }
         }
       }
     }

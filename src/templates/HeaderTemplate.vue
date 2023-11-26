@@ -28,14 +28,13 @@ const { setHoveredMenu, setHoveringInstagram, scrollToTop } = headerStore
     </div>
     <nav :class="[{ [classes.isScrolled]: isScrolled }]">
       <a :class="classes.list" @click.stop.prevent="routerPush('MenuPage')">
-        <div :class="classes.icon">
-          <img
-            src="@/assets/icons/header/clipboard_regular_light.svg"
-            alt="address_icon"
-          />
+        <div :class="[classes.text, classes.large]">
+          {{ $t('nav.menu') }}
         </div>
-        <div :class="classes.text">
-          {{ $t('nav.menu_list') }}
+      </a>
+      <a :class="classes.list" @click.stop.prevent="routerPush('ContactPage')">
+        <div :class="[classes.text, classes.large]">
+          {{ $t('nav.contact') }}
         </div>
       </a>
       <a :class="classes.list" @click.stop.prevent="routerPush('AccessPage')">
@@ -45,19 +44,8 @@ const { setHoveredMenu, setHoveringInstagram, scrollToTop } = headerStore
             alt="address_icon"
           />
         </div>
-        <div :class="classes.text">
+        <div :class="[classes.text, classes.space]">
           {{ $t('nav.address') }}
-        </div>
-      </a>
-      <a :class="classes.list" @click.stop.prevent="routerPush('ContactPage')">
-        <div :class="classes.icon">
-          <img
-            src="@/assets/icons/header/paper_plane_regular_light.svg"
-            alt="contact_icon"
-          />
-        </div>
-        <div :class="classes.text">
-          {{ $t('nav.contact_form') }}
         </div>
       </a>
       <a
@@ -73,7 +61,7 @@ const { setHoveredMenu, setHoveringInstagram, scrollToTop } = headerStore
             alt="instagram_icon"
           />
         </div>
-        <div :class="classes.text">
+        <div :class="[classes.text, classes.space]">
           {{ $t('nav.latest_information') }}
         </div>
         <div v-if="isHoveringInstagram" :class="classes.qrCode">
@@ -110,17 +98,6 @@ const { setHoveredMenu, setHoveringInstagram, scrollToTop } = headerStore
             {{ $t('nav.menu') }}
           </div>
         </a>
-        <a :class="classes.btn" @click.stop.prevent="routerPush('AccessPage')">
-          <div :class="classes.icon">
-            <img
-              src="@/assets/icons/header/location_dot_solid_dark.svg"
-              alt="address_icon"
-            />
-          </div>
-          <div :class="classes.text">
-            {{ $t('nav.access') }}
-          </div>
-        </a>
         <a :class="classes.btn" @click.stop.prevent="routerPush('ContactPage')">
           <div :class="classes.icon">
             <img
@@ -130,6 +107,17 @@ const { setHoveredMenu, setHoveringInstagram, scrollToTop } = headerStore
           </div>
           <div :class="classes.text">
             {{ $t('nav.contact') }}
+          </div>
+        </a>
+        <a :class="classes.btn" @click.stop.prevent="routerPush('AccessPage')">
+          <div :class="classes.icon">
+            <img
+              src="@/assets/icons/header/location_dot_solid_dark.svg"
+              alt="address_icon"
+            />
+          </div>
+          <div :class="classes.text">
+            {{ $t('nav.access') }}
           </div>
         </a>
         <a
@@ -243,26 +231,34 @@ header {
       align-items: center;
       margin-left: 45px;
       cursor: pointer;
+      padding-bottom: 3px;
+      &:hover {
+        border-bottom: 1.5px solid white;
+      }
       .icon {
-        // margin-bottom: 3px;
         width: 18px;
       }
       .text {
         @include font12;
         color: white;
-        margin-left: 6px;
         font-weight: lighter;
         @include mq(short_header) {
           display: none;
         }
+      }
+      .space {
+        margin-left: 6px;
+      }
+      .large {
+        @include font14;
       }
     }
     .instagram {
       position: relative;
       .qrCode {
         position: absolute;
-        top: 30px;
-        left: 0;
+        top: 45px;
+        left: 0px;
         height: 80px;
         width: 80px;
         padding: 60px;
