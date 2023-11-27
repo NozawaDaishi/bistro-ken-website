@@ -6,29 +6,29 @@ const { routerPush } = useRouterFunctions()
 
 <template>
   <div :class="classes.container">
-    <div :class="classes.containerWrapper">
-      <div :class="classes.openClose">
+    <div :class="classes.container_wrapper">
+      <div :class="classes.open_close">
         <div :class="classes.open">
-          <p :class="classes.openTitle">
+          <p :class="classes.open_title">
             {{ $t('commons.business_hours') }}
           </p>
           <div :class="classes.lunch_dinner">
-            <div :class="classes.lunch_dinnerTitle">
-              <p :class="classes.lunchTitle">{{ $t('commons.lunch') }}</p>
-              <p :class="classes.dinnerTitle">{{ $t('commons.dinner') }}</p>
+            <div :class="classes.lunch_dinner_title">
+              <p :class="classes.lunch_title">{{ $t('commons.lunch') }}</p>
+              <p :class="classes.dinner_title">{{ $t('commons.dinner') }}</p>
             </div>
-            <div :class="classes.lunch_dinnerTime">
-              <p :class="classes.lunchTime">
+            <div :class="classes.lunch_dinner_time">
+              <p :class="classes.lunch_time">
                 {{ $t('commons.lunch_time') }}
               </p>
-              <p :class="classes.dinnerTime">
+              <p :class="classes.dinner_time">
                 {{ $t('commons.dinner_time') }}
               </p>
             </div>
           </div>
         </div>
         <div :class="classes.close">
-          <p :class="classes.closeTitle">
+          <p :class="classes.close_title">
             {{ $t('commons.regular_closing_day') }}
           </p>
           <p :class="classes.thursday">
@@ -41,7 +41,7 @@ const { routerPush } = useRouterFunctions()
       </div>
       <div :class="classes.contact">
         <a
-          :class="classes.contactWrapper"
+          :class="classes.contact_wrapper"
           @click.stop.prevent="routerPush('ContactPage')"
         >
           {{ $t('commons.contact') }}
@@ -58,11 +58,11 @@ const { routerPush } = useRouterFunctions()
   padding: 30px 50px 50px;
   background-color: var(--accent-color);
   display: flex;
-  &Wrapper {
+  &_wrapper {
     height: 100%;
     width: 100%;
     display: flex;
-    .openClose {
+    .open_close {
       height: 100%;
       width: 100%;
       display: flex;
@@ -70,26 +70,26 @@ const { routerPush } = useRouterFunctions()
       align-items: center;
       color: var(--dark-gray);
       .open {
-        &Title {
+        &_title {
           @include font32Bold;
         }
         .lunch_dinner {
           @include font22;
           display: flex;
           margin-top: 15px;
-          &Title {
+          &_title {
             display: flex;
             flex-direction: column;
-            .dinnerTitle {
+            .dinner_title {
               margin-top: 15px;
             }
           }
-          &Time {
+          &_time {
             margin-left: 25px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            .dinnerTime {
+            .dinner_time {
               margin-top: 15px;
             }
           }
@@ -97,7 +97,7 @@ const { routerPush } = useRouterFunctions()
       }
       .close {
         margin-left: 100px;
-        &Title {
+        &_title {
           @include font32Bold;
         }
         .thursday {
@@ -119,7 +119,7 @@ const { routerPush } = useRouterFunctions()
       align-items: flex-end;
       @include font16;
       color: var(--dark-gray);
-      &Wrapper {
+      &_wrapper {
         height: 70px;
         width: 25vw;
         border: 1.5px solid var(--dark-gray);

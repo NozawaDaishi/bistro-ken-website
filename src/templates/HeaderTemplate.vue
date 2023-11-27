@@ -13,20 +13,23 @@ const { setHoveredMenu, setHoveringInstagram, scrollToTop } = headerStore
 </script>
 
 <template>
-  <header :class="[{ [classes.isScrolled]: isScrolled }]">
-    <div :class="classes.logoTitle" @click.stop.prevent="routerPush('TopPage')">
+  <header :class="[{ [classes.is_scrolled]: isScrolled }]">
+    <div
+      :class="classes.logo_title"
+      @click.stop.prevent="routerPush('TopPage')"
+    >
       <img
-        :class="[classes.logo, { [classes.isScrolled]: isScrolled }]"
+        :class="[classes.logo, { [classes.is_scrolled]: isScrolled }]"
         src="@/assets/icons/header/logo.svg"
         alt="logo"
       />
       <img
-        :class="[classes.title, { [classes.isScrolled]: isScrolled }]"
+        :class="[classes.title, { [classes.is_scrolled]: isScrolled }]"
         src="@/assets/icons/header/title.svg"
         alt="title"
       />
     </div>
-    <nav :class="[{ [classes.isScrolled]: isScrolled }]">
+    <nav :class="[{ [classes.is_scrolled]: isScrolled }]">
       <a :class="classes.list" @click.stop.prevent="routerPush('MenuPage')">
         <div :class="[classes.text, classes.large]">
           {{ $t('nav.menu') }}
@@ -64,7 +67,7 @@ const { setHoveredMenu, setHoveringInstagram, scrollToTop } = headerStore
         <div :class="[classes.text, classes.space]">
           {{ $t('nav.latest_information') }}
         </div>
-        <div v-if="isHoveringInstagram" :class="classes.qrCode">
+        <div v-if="isHoveringInstagram" :class="classes.qr_code">
           <qrcode-vue :value="INSTAGRAM_URL"></qrcode-vue>
         </div>
       </a>
@@ -72,12 +75,15 @@ const { setHoveredMenu, setHoveringInstagram, scrollToTop } = headerStore
   </header>
   <div :class="classes.operation">
     <button
-      :class="[classes.menu, { [classes.isScrolled]: !isScrolled }]"
+      :class="[classes.menu, { [classes.is_scrolled]: !isScrolled }]"
       @mouseenter="setHoveredMenu(true)"
       @mouseleave="setHoveredMenu(false)"
     >
       <div
-        :class="[classes.menu_icon, { [classes.isHoveredMenu]: isHoveredMenu }]"
+        :class="[
+          classes.menu_icon,
+          { [classes.is_hovered_menu]: isHoveredMenu },
+        ]"
       >
         <img
           src="@/assets/icons/header/arrow_pointer_solid.svg"
@@ -85,7 +91,10 @@ const { setHoveredMenu, setHoveringInstagram, scrollToTop } = headerStore
         />
       </div>
       <div
-        :class="[classes.menu_list, { [classes.isHoveredMenu]: isHoveredMenu }]"
+        :class="[
+          classes.menu_list,
+          { [classes.is_hovered_menu]: isHoveredMenu },
+        ]"
       >
         <a :class="classes.btn" @click.stop.prevent="routerPush('MenuPage')">
           <div :class="classes.icon">
@@ -136,14 +145,17 @@ const { setHoveredMenu, setHoveringInstagram, scrollToTop } = headerStore
           <div :class="classes.text">
             {{ $t('nav.instagram') }}
           </div>
-          <div v-if="isHoveringInstagram" :class="classes.qrCode">
+          <div v-if="isHoveringInstagram" :class="classes.qr_code">
             <qrcode-vue :value="INSTAGRAM_URL"></qrcode-vue>
           </div>
         </a>
       </div>
     </button>
     <button
-      :class="[classes.scrollToTopBtn, { [classes.isScrolled]: !isScrolled }]"
+      :class="[
+        classes.scroll_to_top_btn,
+        { [classes.is_scrolled]: !isScrolled },
+      ]"
       @click.stop.prevent="scrollToTop()"
     >
       <div :class="classes.icon">
@@ -173,14 +185,14 @@ header {
     width 0.5s ease-in-out,
     background-color 0.1s ease-in-out;
 
-  &.isScrolled {
+  &.is_scrolled {
     width: 80px;
     background-color: var(--primary-color-transparent);
     &:hover {
       background-color: var(--primary-color);
     }
   }
-  .logoTitle {
+  .logo_title {
     display: flex;
     height: 50px;
     cursor: pointer;
@@ -189,7 +201,7 @@ header {
       width: 80px;
       margin-left: 15px;
       transition: margin-left 0.5s ease-in-out;
-      &.isScrolled {
+      &.is_scrolled {
         margin-left: 0;
       }
     }
@@ -201,7 +213,7 @@ header {
         opacity 0s linear 0.15s,
         visibility 0.3s ease-in-out;
 
-      &.isScrolled {
+      &.is_scrolled {
         opacity: 0;
         visibility: hidden;
         transition:
@@ -219,7 +231,7 @@ header {
       opacity 0s linear 0.5s,
       visibility 0.3s ease-in-out;
 
-    &.isScrolled {
+    &.is_scrolled {
       opacity: 0;
       visibility: hidden;
       transition:
@@ -270,7 +282,7 @@ header {
     }
     .instagram {
       position: relative;
-      .qrCode {
+      .qr_code {
         position: absolute;
         top: 40px;
         left: 0px;
@@ -309,7 +321,7 @@ header {
       width 0.3s ease-in-out,
       opacity 0.5s ease-in-out,
       transform 0.5s ease-in-out;
-    &.isScrolled {
+    &.is_scrolled {
       opacity: 0;
       transform: translateY(50px);
     }
@@ -327,7 +339,7 @@ header {
         width 0.3s ease-in-out,
         opacity 0.3s linear 0.3s,
         visibility 0.3s linear 0.3s;
-      &.isHoveredMenu {
+      &.is_hovered_menu {
         height: 0;
         width: 0;
         opacity: 0;
@@ -348,7 +360,7 @@ header {
         width 0.3s ease-in-out,
         opacity 0.1s ease,
         visibility 0.1s ease;
-      &.isHoveredMenu {
+      &.is_hovered_menu {
         height: inherit;
         width: inherit;
         opacity: 1;
@@ -374,7 +386,7 @@ header {
       }
       .instagram {
         position: relative;
-        .qrCode {
+        .qr_code {
           position: absolute;
           top: 0px;
           left: -80px;
@@ -391,7 +403,7 @@ header {
       }
     }
   }
-  .scrollToTopBtn {
+  .scroll_to_top_btn {
     position: fixed;
     z-index: 100;
     bottom: 1vw;
@@ -407,7 +419,7 @@ header {
     transition:
       opacity 0.5s ease-in-out,
       transform 0.5s ease-in-out;
-    &.isScrolled {
+    &.is_scrolled {
       opacity: 0;
       transform: translateY(50px);
     }

@@ -14,7 +14,7 @@ import { INSTAGRAM_URL } from '@/consts'
       target="_blank"
       :class="classes.information"
     >
-      <div :class="classes.informationWrapper">
+      <div :class="classes.information_wrapper">
         <div :class="classes.icon">
           <img
             src="@/assets/icons/header/instagram_light.svg"
@@ -59,7 +59,7 @@ import { INSTAGRAM_URL } from '@/consts'
     display: flex;
     justify-content: center;
     cursor: pointer;
-    &Wrapper {
+    &_wrapper {
       height: 70px;
       width: 25vw;
       background-color: var(--primary-color-transparent);
@@ -101,7 +101,7 @@ import { INSTAGRAM_URL } from '@/consts'
     .information {
       width: 33.3vh;
 
-      &Wrapper {
+      &_wrapper {
         width: 33.3vh;
       }
     }

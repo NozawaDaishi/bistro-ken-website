@@ -13,24 +13,24 @@ getNewsArticles()
     <div :class="classes.title">
       {{ $t('commons.news') }}
     </div>
-    <div :class="classes.containerWrapper">
-      <div :class="classes.latestInfo">
+    <div :class="classes.container_wrapper">
+      <div :class="classes.latest_info">
         <p :class="classes.text">{{ $t('commons.latest_info') }}</p>
         <div :class="classes.list">
           <div
             v-for="item in newsArticles"
             :key="item.id"
             :class="[
-              classes.listItem,
-              { [classes.listItem_active]: item === currentNewsArticle },
+              classes.list_item,
+              { [classes.list_item_active]: item === currentNewsArticle },
             ]"
             @click.stop.prevent="selectNewsArticle(item)"
           >
             <div :class="classes.news_header">
-              <div :class="classes.dateTime">
+              <div :class="classes.date_time">
                 {{ item.attributes.publishedAtInJST }}
               </div>
-              <div :class="classes.newsTitle">{{ item.attributes.title }}</div>
+              <div :class="classes.news_title">{{ item.attributes.title }}</div>
             </div>
             <!-- eslint-disable vue/no-v-html -->
             <div
@@ -61,7 +61,7 @@ getNewsArticles()
     @include font32Bold;
     color: var(--dark-gray);
   }
-  &Wrapper {
+  &_wrapper {
     width: 100%;
     background-color: var(--light-gray);
     border-radius: 5px;
@@ -70,7 +70,7 @@ getNewsArticles()
     flex-direction: column;
     align-items: center;
 
-    .latestInfo {
+    .latest_info {
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -93,7 +93,7 @@ getNewsArticles()
         &::-webkit-scrollbar {
           display: none;
         }
-        &Item {
+        &_item {
           width: 100%;
           background-color: var(--secondary-color);
           border-radius: 5px;
@@ -112,13 +112,13 @@ getNewsArticles()
             @include mq(sp) {
               flex-direction: column;
             }
-            .newsTitle,
-            .dateTime {
+            .news_title,
+            .date_time {
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
             }
-            .newsTitle {
+            .news_title {
               @include font12Bold;
               margin-left: 15px;
               @include mq(sp) {

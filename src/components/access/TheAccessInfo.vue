@@ -9,7 +9,7 @@ const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
     <div :class="classes.title">
       {{ $t('commons.access') }}
     </div>
-    <div :class="classes.containerWrapper">
+    <div :class="classes.container_wrapper">
       <div :class="classes.map">
         <GoogleMap
           :api-key="apiKey"
@@ -24,7 +24,7 @@ const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
         </GoogleMap>
       </div>
       <div :class="classes.info">
-        <div :class="classes.infoWrapper">
+        <div :class="classes.info_wrapper">
           <div :class="classes.address">
             <div :class="classes.icon">
               <img
@@ -32,7 +32,7 @@ const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
                 alt="address_icon"
               />
             </div>
-            <div :class="classes.addressWrapper">
+            <div :class="classes.address_wrapper">
               <p :class="classes.postal_code">
                 {{ $t('commons.postal_code') }}
               </p>
@@ -43,8 +43,8 @@ const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
             <p :class="classes.access_info">
               {{ $t('commons.access_info') }}
             </p>
-            <p :class="classes.parkingInfo">
-              {{ $t('commons.parkingInfo') }}
+            <p :class="classes.parking_info">
+              {{ $t('commons.parking_info') }}
             </p>
           </div>
         </div>
@@ -70,7 +70,7 @@ const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
       padding: 0px 30px;
     }
   }
-  &Wrapper {
+  &_wrapper {
     height: 100%;
     width: 100%;
     display: flex;
@@ -100,7 +100,7 @@ const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
         padding: 0;
         @include font16;
       }
-      &Wrapper {
+      &_wrapper {
         display: flex;
         flex-direction: column;
         .address {
@@ -118,7 +118,7 @@ const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
               width: 20px;
             }
           }
-          &Wrapper {
+          &_wrapper {
             margin-left: 25px;
             @include mq(sp) {
               margin-left: 0;
@@ -136,7 +136,7 @@ const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
             @include font16;
             margin-left: 0px;
           }
-          .parkingInfo {
+          .parking_info {
             margin-top: 5px;
           }
         }
