@@ -239,21 +239,28 @@ import { GOOGLE_MAP_DETAIL } from '@/consts'
         .map {
           height: 70px;
           width: 25vw;
-          border: 1.5px solid var(--dark-gray);
+          color: var(--accent-color);
+          background-color: var(--dark-gray);
           border-radius: 5px;
           display: flex;
           align-items: center;
           justify-content: center;
           margin-top: 30px;
           cursor: pointer;
-          transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+          position: relative;
           @include mq(small_store_info) {
             width: 30vh;
           }
-          &:hover {
-            border: none;
-            color: var(--accent-color);
-            box-shadow: var(--dark-gray) 0 80px 0px 2px inset;
+          &:hover::after {
+            content: '';
+            position: absolute;
+            top: -3.5px;
+            bottom: -3.5px;
+            left: -3.5px;
+            right: -3.5px;
+            border: 2px solid var(--dark-gray);
+            border-radius: inherit;
+            box-sizing: border-box;
           }
         }
       }

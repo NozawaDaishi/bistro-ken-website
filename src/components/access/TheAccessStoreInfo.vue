@@ -58,10 +58,17 @@ const { routerPush } = useRouterFunctions()
   padding: 30px 50px 50px;
   background-color: var(--accent-color);
   display: flex;
+  @include mq(small_store_info) {
+    height: auto;
+    padding: 30px 25px 50px;
+  }
   &_wrapper {
     height: 100%;
     width: 100%;
     display: flex;
+    @include mq(small_store_info) {
+      flex-direction: column;
+    }
     .open_close {
       height: 100%;
       width: 100%;
@@ -69,14 +76,24 @@ const { routerPush } = useRouterFunctions()
       justify-content: center;
       align-items: center;
       color: var(--dark-gray);
+      @include mq(small_store_info) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
       .open {
         &_title {
           @include font32Bold;
+          @include mq(small_store_info) {
+            @include font24Bold;
+          }
         }
         .lunch_dinner {
           @include font22;
           display: flex;
           margin-top: 15px;
+          @include mq(small_store_info) {
+            @include font18;
+          }
           &_title {
             display: flex;
             flex-direction: column;
@@ -97,16 +114,29 @@ const { routerPush } = useRouterFunctions()
       }
       .close {
         margin-left: 100px;
+        @include mq(small_store_info) {
+          margin-left: 0;
+          margin-top: 15px;
+        }
         &_title {
           @include font32Bold;
+          @include mq(small_store_info) {
+            @include font24Bold;
+          }
         }
         .thursday {
           @include font22;
           margin-top: 15px;
+          @include mq(small_store_info) {
+            @include font18;
+          }
         }
         .non_scheduled_holiday {
           @include font22;
           margin-top: 15px;
+          @include mq(small_store_info) {
+            @include font18;
+          }
         }
       }
     }
@@ -118,22 +148,35 @@ const { routerPush } = useRouterFunctions()
       justify-content: flex-end;
       align-items: flex-end;
       @include font16;
-      color: var(--dark-gray);
+      color: var(--accent-color);
+      @include mq(small_store_info) {
+        justify-content: center;
+        align-items: center;
+      }
       &_wrapper {
         height: 70px;
         width: 25vw;
-        border: 1.5px solid var(--dark-gray);
+        background-color: var(--dark-gray);
         border-radius: 5px;
         display: flex;
         align-items: center;
         justify-content: center;
         margin-top: 30px;
         cursor: pointer;
-        transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
-        &:hover {
-          border: none;
-          color: var(--accent-color);
-          box-shadow: var(--dark-gray) 0 80px 0px 2px inset;
+        position: relative;
+        @include mq(small_store_info) {
+          width: 30vh;
+        }
+        &:hover::after {
+          content: '';
+          position: absolute;
+          top: -3.5px;
+          bottom: -3.5px;
+          left: -3.5px;
+          right: -3.5px;
+          border: 2px solid var(--dark-gray);
+          border-radius: inherit;
+          box-sizing: border-box;
         }
       }
     }

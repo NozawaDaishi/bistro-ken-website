@@ -32,12 +32,12 @@ const { setHoveredMenu, setHoveringInstagram, scrollToTop } = headerStore
     <nav :class="[{ [classes.is_scrolled]: isScrolled }]">
       <a :class="classes.list" @click.stop.prevent="routerPush('MenuPage')">
         <div :class="[classes.text, classes.large]">
-          {{ $t('nav.menu') }}
+          {{ $t('nav.menu_list') }}
         </div>
       </a>
       <a :class="classes.list" @click.stop.prevent="routerPush('ContactPage')">
         <div :class="[classes.text, classes.large]">
-          {{ $t('nav.contact') }}
+          {{ $t('nav.contact_form') }}
         </div>
       </a>
       <a :class="classes.list" @click.stop.prevent="routerPush('AccessPage')">
