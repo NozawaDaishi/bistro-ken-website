@@ -96,7 +96,7 @@ import { GOOGLE_MAP_DETAIL } from '@/consts'
   background-color: var(--accent-color);
   display: flex;
   flex-direction: column;
-  @include mq(small_store_info) {
+  @include mq(small_top_store_info) {
     height: auto;
     align-items: center;
     padding: 30px 25px 50px;
@@ -104,14 +104,14 @@ import { GOOGLE_MAP_DETAIL } from '@/consts'
   .title {
     @include font32Bold;
     color: var(--dark-gray);
-    @include mq(small_store_info) {
+    @include mq(small_top_store_info) {
       align-self: flex-start;
     }
   }
   &_wrapper {
     height: 100%;
     display: flex;
-    @include mq(small_store_info) {
+    @include mq(small_top_store_info) {
       height: auto;
       flex-direction: column;
     }
@@ -174,7 +174,7 @@ import { GOOGLE_MAP_DETAIL } from '@/consts'
       align-items: flex-end;
       @include font16;
       color: var(--dark-gray);
-      @include mq(small_store_info) {
+      @include mq(small_top_store_info) {
         margin-top: 30px;
         justify-content: flex-start;
         align-items: flex-start;
@@ -221,7 +221,7 @@ import { GOOGLE_MAP_DETAIL } from '@/consts'
             &_wrapper {
               margin-left: 25px;
               .text {
-                @include mq(word_break) {
+                @include mq(small_top_store_info_word_break) {
                   width: 250px;
                 }
               }
@@ -248,7 +248,7 @@ import { GOOGLE_MAP_DETAIL } from '@/consts'
           margin-top: 30px;
           cursor: pointer;
           position: relative;
-          @include mq(small_store_info) {
+          @include mq(small_top_store_info) {
             width: 30vh;
           }
           &:hover::after {

@@ -58,7 +58,7 @@ const { routerPush } = useRouterFunctions()
   padding: 30px 50px 50px;
   background-color: var(--accent-color);
   display: flex;
-  @include mq(small_store_info) {
+  @include mq(small_access_store_info) {
     height: auto;
     padding: 30px 25px 50px;
   }
@@ -66,7 +66,7 @@ const { routerPush } = useRouterFunctions()
     height: 100%;
     width: 100%;
     display: flex;
-    @include mq(small_store_info) {
+    @include mq(small_access_store_info) {
       flex-direction: column;
     }
     .open_close {
@@ -76,14 +76,14 @@ const { routerPush } = useRouterFunctions()
       justify-content: center;
       align-items: center;
       color: var(--dark-gray);
-      @include mq(small_store_info) {
+      @include mq(small_access_store_info) {
         flex-direction: column;
         align-items: flex-start;
       }
       .open {
         &_title {
           @include font32Bold;
-          @include mq(small_store_info) {
+          @include mq(small_access_store_info) {
             @include font24Bold;
           }
         }
@@ -91,7 +91,7 @@ const { routerPush } = useRouterFunctions()
           @include font22;
           display: flex;
           margin-top: 15px;
-          @include mq(small_store_info) {
+          @include mq(small_access_store_info) {
             @include font18;
           }
           &_title {
@@ -114,27 +114,27 @@ const { routerPush } = useRouterFunctions()
       }
       .close {
         margin-left: 100px;
-        @include mq(small_store_info) {
+        @include mq(small_access_store_info) {
           margin-left: 0;
           margin-top: 15px;
         }
         &_title {
           @include font32Bold;
-          @include mq(small_store_info) {
+          @include mq(small_access_store_info) {
             @include font24Bold;
           }
         }
         .thursday {
           @include font22;
           margin-top: 15px;
-          @include mq(small_store_info) {
+          @include mq(small_access_store_info) {
             @include font18;
           }
         }
         .non_scheduled_holiday {
           @include font22;
           margin-top: 15px;
-          @include mq(small_store_info) {
+          @include mq(small_access_store_info) {
             @include font18;
           }
         }
@@ -149,7 +149,7 @@ const { routerPush } = useRouterFunctions()
       align-items: flex-end;
       @include font16;
       color: var(--accent-color);
-      @include mq(small_store_info) {
+      @include mq(small_access_store_info) {
         justify-content: center;
         align-items: center;
       }
@@ -164,7 +164,7 @@ const { routerPush } = useRouterFunctions()
         margin-top: 30px;
         cursor: pointer;
         position: relative;
-        @include mq(small_store_info) {
+        @include mq(small_access_store_info) {
           width: 30vh;
         }
         &:hover::after {
