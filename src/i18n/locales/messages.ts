@@ -39,6 +39,9 @@ const messages = {
       latest_information: '最新情報はこちら',
       menu_list: 'メニュー',
     },
+    contact: {
+      title: 'お問い合わせフォーム',
+    },
   },
   en: {
     commons: {
