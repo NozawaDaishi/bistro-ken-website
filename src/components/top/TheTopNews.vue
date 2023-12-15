@@ -1,11 +1,25 @@
 <script setup lang="ts" name="TopNews">
 import useNewsStore from '@/stores/useNewsStore'
+import { ref, watchEffect } from 'vue'
 import { storeToRefs } from 'pinia'
-const newsStore = useNewsStore()
-const { currentNewsArticle, newsArticles } = storeToRefs(newsStore)
-const { getNewsArticles, selectNewsArticle } = newsStore
+import { Vue3SlideUpDown } from 'vue3-slide-up-down'
 
+const newsStore = useNewsStore()
+const { newsArticles } = storeToRefs(newsStore)
+const { getNewsArticles } = newsStore
 getNewsArticles()
+
+const isVisible = ref<Record<string, boolean>>({})
+
+const toggleNewsContent = (itemId: string) => {
+  isVisible.value[itemId] = !isVisible.value[itemId]
+}
+
+watchEffect(() => {
+  newsArticles.value.forEach((article) => {
+    isVisible.value[article.id] = isVisible.value[article.id] || false
+  })
+})
 </script>
 
 <template>
@@ -20,25 +34,41 @@ getNewsArticles()
           <div
             v-for="item in newsArticles"
             :key="item.id"
-            :class="[
-              classes.list_item,
-              { [classes.list_item_active]: item === currentNewsArticle },
-            ]"
-            @click.stop.prevent="selectNewsArticle(item)"
+            :class="classes.list_item"
+            @click="toggleNewsContent(item.id)"
           >
             <div :class="classes.news_header">
-              <div :class="classes.date_time">
-                {{ item.attributes.publishedAtInJST }}
+              <div :class="classes.news_header_wrapper">
+                <div :class="classes.date_time">
+                  {{ item.attributes.publishedAtInJST }}
+                </div>
+                <div
+                  :class="[
+                    classes.news_title,
+                    { [classes.active]: isVisible[item.id] },
+                  ]"
+                >
+                  {{ item.attributes.title }}
+                </div>
               </div>
-              <div :class="classes.news_title">{{ item.attributes.title }}</div>
+              <img
+                v-show="isVisible[item.id]"
+                src="@/assets/icons/top/chevron-up.svg"
+                alt="chevron_up"
+              />
+              <img
+                v-show="!isVisible[item.id]"
+                src="@/assets/icons/top/chevron-down.svg"
+                alt="chevron_down"
+              />
             </div>
-            <!-- eslint-disable vue/no-v-html -->
-            <div
-              v-show="item === currentNewsArticle"
-              :class="classes.content"
-              v-html="item.attributes.content"
-            ></div>
-            <!-- eslint-enable vue/no-v-html -->
+            <Vue3SlideUpDown v-model="isVisible[item.id]">
+              <!-- eslint-disable vue/no-v-html -->
+              <div
+                :class="classes.content"
+                v-html="item.attributes.content"
+              ></div
+            ></Vue3SlideUpDown>
           </div>
         </div>
       </div>
@@ -81,49 +111,58 @@ getNewsArticles()
         width: 90%;
       }
       .text {
-        @include font14;
+        @include font18Bold;
         color: var(--dark-gray);
       }
       .list {
         width: 80%;
-        margin-top: 15px;
+        margin: 15px 0;
         overflow-y: scroll;
         -ms-overflow-style: none;
         scrollbar-width: none;
+        border-top: 0.5px solid var(--dark-gray);
         &::-webkit-scrollbar {
           display: none;
         }
         &_item {
           width: 100%;
-          background-color: var(--secondary-color);
-          border-radius: 5px;
+          border-bottom: 0.5px solid var(--dark-gray);
           display: flex;
           flex-direction: column;
-          margin-bottom: 10px;
           padding: 10px 15px;
           @include font12;
           color: var(--dark-gray);
           cursor: pointer;
           &:hover {
-            background-color: var(--third-color);
+            .news_title {
+              color: var(--primary-color);
+            }
           }
           .news_header {
             display: flex;
-            @include mq(sp) {
-              flex-direction: column;
-            }
-            .news_title,
-            .date_time {
-              overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-            }
-            .news_title {
-              @include font12Bold;
-              margin-left: 15px;
+            justify-content: space-between;
+            &_wrapper {
+              display: flex;
+              align-items: center;
               @include mq(sp) {
-                margin-left: 0;
-                margin-top: 15px;
+                flex-direction: column;
+              }
+              .news_title,
+              .date_time {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+              }
+              .news_title {
+                @include font14Bold;
+                margin-left: 15px;
+                @include mq(sp) {
+                  margin-left: 0;
+                  margin-top: 15px;
+                }
+                &.active {
+                  color: var(--primary-color);
+                }
               }
             }
           }
