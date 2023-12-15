@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 
 interface State {
   isHoveredMenu: boolean
+  isHoveringInstagram: boolean
   isScrolled: boolean
   routerViewWrapperRef: HTMLElement | null
 }
@@ -9,6 +10,7 @@ interface State {
 const useHeaderStore = defineStore('useHeader', {
   state: (): State => ({
     isHoveredMenu: false,
+    isHoveringInstagram: false,
     isScrolled: false,
     routerViewWrapperRef: null,
   }),
@@ -19,6 +21,13 @@ const useHeaderStore = defineStore('useHeader', {
      */
     setHoveredMenu(value: boolean) {
       this.isHoveredMenu = value
+    },
+    /**
+     * menuのホバー状態を設定します。
+     * @param value menuがホバーされたかどうかの真偽値。
+     */
+    setHoveringInstagram(value: boolean) {
+      this.isHoveringInstagram = value
     },
     /**
      * スクロール状態を設定します。

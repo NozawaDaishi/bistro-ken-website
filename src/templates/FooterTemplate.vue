@@ -1,4 +1,6 @@
-<script setup lang="ts" name="FooterTemplate"></script>
+<script setup lang="ts" name="FooterTemplate">
+import { INSTAGRAM_URL } from '@/consts'
+</script>
 
 <template>
   <div :class="classes.container">
@@ -6,12 +8,16 @@
       <p :class="classes.text">{{ $t('commons.produced_by') }}</p>
       <p :class="classes.name">{{ $t('commons.producer') }}</p>
     </div>
-    <!-- TODO: リンク追加 -->
-    <button :class="classes.information">
+    <a
+      type="button"
+      :href="INSTAGRAM_URL"
+      target="_blank"
+      :class="classes.information"
+    >
       <div :class="classes.information_wrapper">
         <div :class="classes.icon">
           <img
-            src="@/assets/icons/header/instagram_dark.svg"
+            src="@/assets/icons/header/instagram_light.svg"
             alt="instagram_icon"
           />
         </div>
@@ -19,7 +25,7 @@
           {{ $t('nav.latest_information') }}
         </div>
       </div>
-    </button>
+    </a>
     <div :class="classes.copyright">
       <p :class="classes.text">{{ $t('commons.copyright') }}</p>
     </div>
@@ -52,19 +58,24 @@
     width: 33.3vw;
     display: flex;
     justify-content: center;
+    cursor: pointer;
     &_wrapper {
       height: 70px;
       width: 25vw;
-      border: 1.5px solid var(--dark-gray);
+      background-color: var(--primary-color-transparent);
+      border-radius: 5px;
       display: flex;
       align-items: center;
       justify-content: center;
+      &:hover {
+        background-color: var(--primary-color);
+      }
       .icon {
         width: 20px;
       }
       .text {
         @include font16;
-        color: var(--dark-gray);
+        color: white;
         margin-left: 15px;
       }
     }
@@ -76,6 +87,26 @@
     .text {
       @include font12;
       color: var(--dark-gray);
+    }
+  }
+}
+@include mq(sp) {
+  .container {
+    flex-direction: column;
+    .produce {
+      display: flex;
+      flex-direction: column;
+      width: 33.3vh;
+    }
+    .information {
+      width: 33.3vh;
+
+      &_wrapper {
+        width: 33.3vh;
+      }
+    }
+    .copyright {
+      width: 33.3vh;
     }
   }
 }

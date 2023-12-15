@@ -6,7 +6,7 @@
 
 <style lang="scss" module="classes">
 .container {
-  height: 1300px;
+  height: 500px;
   width: 100%;
 }
 </style>

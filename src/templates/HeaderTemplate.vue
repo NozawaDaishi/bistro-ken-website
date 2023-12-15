@@ -1,62 +1,89 @@
 <script setup lang="ts" name="HeaderTemplate">
+import { INSTAGRAM_URL } from '@/consts'
+import QrcodeVue from 'qrcode.vue'
 import { storeToRefs } from 'pinia'
 import useHeaderStore from '@/stores/useHeaderStore'
 import useRouterFunctions from '@/composables/useRouterFunctions'
 
 const { routerPush } = useRouterFunctions()
 const headerStore = useHeaderStore()
-const { isHoveredMenu, isScrolled } = storeToRefs(headerStore)
-const { setHoveredMenu, scrollToTop } = headerStore
+const { isHoveredMenu, isHoveringInstagram, isScrolled } =
+  storeToRefs(headerStore)
+const { setHoveredMenu, setHoveringInstagram, scrollToTop } = headerStore
 </script>
 
 <template>
-  <header :class="[{ [classes.isScrolled]: isScrolled }]">
-    <div :class="classes.logoTitle" @click.stop.prevent="routerPush('TopPage')">
+  <header :class="[{ [classes.is_scrolled]: isScrolled }]">
+    <div
+      :class="classes.logo_title"
+      @click.stop.prevent="routerPush('TopPage')"
+    >
       <img
-        :class="[classes.logo, { [classes.isScrolled]: isScrolled }]"
+        :class="[classes.logo, { [classes.is_scrolled]: isScrolled }]"
         src="@/assets/icons/header/logo.svg"
         alt="logo"
       />
       <img
-        :class="[classes.title, { [classes.isScrolled]: isScrolled }]"
+        :class="[classes.title, { [classes.is_scrolled]: isScrolled }]"
         src="@/assets/icons/header/title.svg"
         alt="title"
       />
     </div>
-    <nav :class="[{ [classes.isScrolled]: isScrolled }]">
-      <button :class="classes.list">
+    <nav :class="[{ [classes.is_scrolled]: isScrolled }]">
+      <a :class="classes.list" @click.stop.prevent="routerPush('MenuPage')">
+        <div :class="[classes.text, classes.large]">
+          {{ $t('nav.menu_list') }}
+        </div>
+      </a>
+      <a :class="classes.list" @click.stop.prevent="routerPush('ContactPage')">
+        <div :class="[classes.text, classes.large]">
+          {{ $t('nav.contact_form') }}
+        </div>
+      </a>
+      <a :class="classes.list" @click.stop.prevent="routerPush('AccessPage')">
         <div :class="classes.icon">
           <img
             src="@/assets/icons/header/location_dot_solid_light.svg"
             alt="address_icon"
           />
         </div>
-        <div :class="classes.text">
+        <div :class="[classes.text, classes.space]">
           {{ $t('nav.address') }}
         </div>
-      </button>
-      <!-- TODO: リンクの追加 -->
-      <button :class="classes.list">
+      </a>
+      <a
+        :href="INSTAGRAM_URL"
+        target="_blank"
+        :class="[classes.list, classes.instagram]"
+        @mouseenter="setHoveringInstagram(true)"
+        @mouseleave="setHoveringInstagram(false)"
+      >
         <div :class="classes.icon">
           <img
             src="@/assets/icons/header/instagram_light.svg"
             alt="instagram_icon"
           />
         </div>
-        <div :class="classes.text">
+        <div :class="[classes.text, classes.space]">
           {{ $t('nav.latest_information') }}
         </div>
-      </button>
+        <div v-if="isHoveringInstagram" :class="classes.qr_code">
+          <qrcode-vue :value="INSTAGRAM_URL"></qrcode-vue>
+        </div>
+      </a>
     </nav>
   </header>
   <div :class="classes.operation">
     <button
-      :class="[classes.menu, { [classes.isScrolled]: !isScrolled }]"
+      :class="[classes.menu, { [classes.is_scrolled]: !isScrolled }]"
       @mouseenter="setHoveredMenu(true)"
       @mouseleave="setHoveredMenu(false)"
     >
       <div
-        :class="[classes.menu_icon, { [classes.isHoveredMenu]: isHoveredMenu }]"
+        :class="[
+          classes.menu_icon,
+          { [classes.is_hovered_menu]: isHoveredMenu },
+        ]"
       >
         <img
           src="@/assets/icons/header/arrow_pointer_solid.svg"
@@ -64,20 +91,51 @@ const { setHoveredMenu, scrollToTop } = headerStore
         />
       </div>
       <div
-        :class="[classes.menu_list, { [classes.isHoveredMenu]: isHoveredMenu }]"
+        :class="[
+          classes.menu_list,
+          { [classes.is_hovered_menu]: isHoveredMenu },
+        ]"
       >
-        <button :class="classes.btn">
+        <a :class="classes.btn" @click.stop.prevent="routerPush('MenuPage')">
+          <div :class="classes.icon">
+            <img
+              src="@/assets/icons/header/clipboard_regular_dark.svg"
+              alt="menu_icon"
+            />
+          </div>
+          <div :class="classes.text">
+            {{ $t('nav.menu') }}
+          </div>
+        </a>
+        <a :class="classes.btn" @click.stop.prevent="routerPush('ContactPage')">
+          <div :class="classes.icon">
+            <img
+              src="@/assets/icons/header/paper_plane_regular_dark.svg"
+              alt="contact_icon"
+            />
+          </div>
+          <div :class="classes.text">
+            {{ $t('nav.contact') }}
+          </div>
+        </a>
+        <a :class="classes.btn" @click.stop.prevent="routerPush('AccessPage')">
           <div :class="classes.icon">
             <img
               src="@/assets/icons/header/location_dot_solid_dark.svg"
-              alt="instagram_icon"
+              alt="address_icon"
             />
           </div>
           <div :class="classes.text">
             {{ $t('nav.access') }}
           </div>
-        </button>
-        <button :class="classes.btn">
+        </a>
+        <a
+          :href="INSTAGRAM_URL"
+          target="_blank"
+          :class="[classes.btn, classes.instagram]"
+          @mouseenter="setHoveringInstagram(true)"
+          @mouseleave="setHoveringInstagram(false)"
+        >
           <div :class="classes.icon">
             <img
               src="@/assets/icons/header/instagram_dark.svg"
@@ -87,11 +145,17 @@ const { setHoveredMenu, scrollToTop } = headerStore
           <div :class="classes.text">
             {{ $t('nav.instagram') }}
           </div>
-        </button>
+          <div v-if="isHoveringInstagram" :class="classes.qr_code">
+            <qrcode-vue :value="INSTAGRAM_URL"></qrcode-vue>
+          </div>
+        </a>
       </div>
     </button>
     <button
-      :class="[classes.scrollToTopBtn, { [classes.isScrolled]: !isScrolled }]"
+      :class="[
+        classes.scroll_to_top_btn,
+        { [classes.is_scrolled]: !isScrolled },
+      ]"
       @click.stop.prevent="scrollToTop()"
     >
       <div :class="classes.icon">
@@ -119,13 +183,16 @@ header {
   justify-content: space-between;
   transition:
     width 0.5s ease-in-out,
-    background-color 0.5s ease-in-out;
+    background-color 0.1s ease-in-out;
 
-  &.isScrolled {
+  &.is_scrolled {
     width: 80px;
     background-color: var(--primary-color-transparent);
+    &:hover {
+      background-color: var(--primary-color);
+    }
   }
-  .logoTitle {
+  .logo_title {
     display: flex;
     height: 50px;
     cursor: pointer;
@@ -134,7 +201,7 @@ header {
       width: 80px;
       margin-left: 15px;
       transition: margin-left 0.5s ease-in-out;
-      &.isScrolled {
+      &.is_scrolled {
         margin-left: 0;
       }
     }
@@ -146,7 +213,7 @@ header {
         opacity 0s linear 0.15s,
         visibility 0.3s ease-in-out;
 
-      &.isScrolled {
+      &.is_scrolled {
         opacity: 0;
         visibility: hidden;
         transition:
@@ -161,29 +228,73 @@ header {
     opacity: 1;
     visibility: visible;
     transition:
-      opacity 0s linear 0.4s,
+      opacity 0s linear 0.5s,
       visibility 0.3s ease-in-out;
 
-    &.isScrolled {
+    &.is_scrolled {
       opacity: 0;
       visibility: hidden;
       transition:
-        opacity 0.3s ease-in-out,
-        visibility 0s linear 1s;
+        opacity 0s ease-in-out,
+        visibility 0s ease-in-out;
     }
     .list {
       display: flex;
       align-items: center;
-      margin-left: 20px;
+      margin-left: 45px;
+      cursor: pointer;
+      padding-bottom: 5px;
+      position: relative;
+      &::before {
+        background: white;
+        content: '';
+        width: 100%;
+        height: 1px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        margin: auto;
+        transform-origin: right top;
+        transform: scale(0, 1);
+        transition: transform 0.3s;
+      }
+      &:hover::before {
+        transform-origin: left top;
+        transform: scale(1, 1);
+      }
       .icon {
-        margin-bottom: 3px;
-        width: 15px;
+        width: 18px;
       }
       .text {
         @include font12;
         color: white;
-        margin-left: 6px;
         font-weight: lighter;
+        @include mq(short_header) {
+          display: none;
+        }
+      }
+      .space {
+        margin-left: 6px;
+      }
+      .large {
+        @include font14;
+      }
+    }
+    .instagram {
+      position: relative;
+      .qr_code {
+        position: absolute;
+        top: 40px;
+        left: 0px;
+        height: 80px;
+        width: 80px;
+        padding: 60px;
+        border: 0.1px solid var(--dark-gray);
+        border-radius: 5px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }
@@ -199,6 +310,7 @@ header {
     justify-content: center;
     margin-left: 11px;
     background-color: var(--light-gray);
+    border: 0.1px solid var(--dark-gray);
     border-radius: 10px;
     height: 50px;
     width: 50px;
@@ -209,12 +321,12 @@ header {
       width 0.3s ease-in-out,
       opacity 0.5s ease-in-out,
       transform 0.5s ease-in-out;
-    &.isScrolled {
+    &.is_scrolled {
       opacity: 0;
       transform: translateY(50px);
     }
     &:hover {
-      height: 300px;
+      height: 350px;
       width: 200px;
     }
     &_icon {
@@ -227,7 +339,7 @@ header {
         width 0.3s ease-in-out,
         opacity 0.3s linear 0.3s,
         visibility 0.3s linear 0.3s;
-      &.isHoveredMenu {
+      &.is_hovered_menu {
         height: 0;
         width: 0;
         opacity: 0;
@@ -248,7 +360,7 @@ header {
         width 0.3s ease-in-out,
         opacity 0.1s ease,
         visibility 0.1s ease;
-      &.isHoveredMenu {
+      &.is_hovered_menu {
         height: inherit;
         width: inherit;
         opacity: 1;
@@ -262,7 +374,8 @@ header {
       .btn {
         display: flex;
         align-items: center;
-        padding: 5px 40px;
+        padding: 5px 50px;
+        cursor: pointer;
         .icon {
           display: flex;
           width: 20px;
@@ -271,9 +384,26 @@ header {
           margin-left: 10px;
         }
       }
+      .instagram {
+        position: relative;
+        .qr_code {
+          position: absolute;
+          top: 0px;
+          left: -80px;
+          height: 80px;
+          width: 80px;
+          padding: 60px;
+          border: 0.1px solid var(--dark-gray);
+          border-radius: 5px;
+          background-color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
     }
   }
-  .scrollToTopBtn {
+  .scroll_to_top_btn {
     position: fixed;
     z-index: 100;
     bottom: 1vw;
@@ -289,7 +419,7 @@ header {
     transition:
       opacity 0.5s ease-in-out,
       transform 0.5s ease-in-out;
-    &.isScrolled {
+    &.is_scrolled {
       opacity: 0;
       transform: translateY(50px);
     }
@@ -299,6 +429,7 @@ header {
     }
     &:hover {
       background-color: var(--light-gray-transparent);
+      border: 0.1px solid var(--dark-gray);
     }
   }
 }

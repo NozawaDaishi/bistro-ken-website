@@ -1,8 +1,13 @@
 // ブレイクポイントの設定
 $breakpoint: (
-  sp: 'screen and (max-width: 767px)',
+  sp: 'screen and (max-width: 884px)',
   tab: 'screen and (min-width: 768px)',
   pc: 'screen and (min-width: 1025px)',
+  short_header: 'screen and (max-width: 1072px)',
+  small_access_info: 'screen and (max-width: 1370px)',
+  small_access_store_info: 'screen and (max-width: 1259px)',
+  small_top_store_info: 'screen and (max-width: 946px)',
+  small_top_store_info_word_break: 'screen and (max-width: 523px)',
 );
 
 @mixin mq($bp) {
@@ -47,9 +52,19 @@ $breakpoint: (
   line-height: 28px;
 }
 
+@mixin font22 {
+  font-size: 22px;
+  line-height: 30px;
+}
+
 @mixin font24 {
   font-size: 24px;
   line-height: 40px;
+}
+
+@mixin font32 {
+  font-size: 32px;
+  line-height: 64px;
 }
 
 @mixin font12Bold {
@@ -88,9 +103,21 @@ $breakpoint: (
   font-weight: bold;
 }
 
+@mixin font22Bold {
+  font-size: 22px;
+  line-height: 30px;
+  font-weight: bold;
+}
+
 @mixin font24Bold {
   font-size: 24px;
   line-height: 30px;
+  font-weight: bold;
+}
+
+@mixin font32Bold {
+  font-size: 32px;
+  line-height: 64px;
   font-weight: bold;
 }
 

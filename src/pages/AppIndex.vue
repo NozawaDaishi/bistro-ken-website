@@ -9,7 +9,6 @@ import { storeToRefs } from 'pinia'
 const headerStore = useHeaderStore()
 const { routerViewWrapperRef } = storeToRefs(headerStore)
 const { setScrolled } = headerStore
-
 /**
  * スクロールイベントのハンドラ。
  * スクロール位置に基づいて、ヘッダーの状態を更新します。
